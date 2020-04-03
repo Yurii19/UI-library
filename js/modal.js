@@ -35,7 +35,7 @@ function init() {
   modalMessage.after(modalFooter);
   modalFooter.append(acceptButton, rejectButton);
 
-  checkFlag(Modal, flagShow);
+   checkFlag(Modal, flagShow);
 
   document.addEventListener('click', (event) => {
     if (event.target.classList.contains('modal-trigger')) {
@@ -56,9 +56,10 @@ function init() {
 }
 
 function checkFlag(el, flag) {
+  console.log('checkFlag');
   if (flag) {
-    el.style.visibility = 'visible';
+    el.classList.remove('hide-modal');
   } else {
-    el.style.visibility = 'hidden';
+    el.classList.add('hide-modal');
   }
 }
