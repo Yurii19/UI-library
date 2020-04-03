@@ -1,10 +1,8 @@
 
 
-const myimg = 'https://loremflickr.com/320/240';
-
 const config1 = ['https://loremflickr.com/320/240', 'https://loremflickr.com/320/240/brazil,rio', 'https://loremflickr.com/g/320/240/paris,girl/all'];
 let id = 'carousel1';
-drawSlider(id, config1)
+drawSlider(id, config1);
 
 const buttonL = document.getElementById('button-left');
 
