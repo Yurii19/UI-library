@@ -5,95 +5,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Myframework</title>
   <link rel="stylesheet/less" type="text/css" href="styles/style.less" />
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
   <script src="https://kit.fontawesome.com/a92211bf3b.js" crossorigin="anonymous"></script>
-  <script src="js/burger.js"></script>
 </head>
 
 <body>
   <nav class="nav">
     <div class="logo"><img>Menu</div>
-    <div class="burger"><i id="showmenu" class="mfa fas fa-bars"></i><i id="closemenu" class="mfa fas fa-times"></i></div>
+    <div class="burger"><i id="showmenu" class="mfa fas fa-bars"></i><i id="closemenu" class="mfa fas fa-times"></i>
+    </div>
     <ul id="menu-list" class="nav-menu">
-      <!-- <li><h4>Menu</h4></li> -->
       <li class="menu-item"><a href="#">Пункт 1</a></li>
       <li class="menu-item"><a href="#">Пункт 2</a></li>
       <li class="menu-item"><a href="#">Пункт 3</a></li>
     </ul>
   </nav>
+  <br>
+  <br>
+  <br>
+  </head>
 
-  <br>
-  <br>
-  <br>
-  <div class="row">
-    <div class="cw-1 decor">cw-1</div>
-    <div class="cw-2 decor">cw-2</div>
-    <div class="cw-3 decor">cw-3</div>
-    <div class="cw-4 decor">cw-4</div>
-  </div>
-  <div>*</div>
-  <div class="row">
-    <div class="cw-2 decor">cw-2</div>
-    <div class="cw-2 decor">cw-2</div>
-    <div class="cw-2 decor">cw-2</div>
-    <div class="cw-2 decor">cw-2</div>
-    <div class="cw-2 decor">cw-2</div>
-    <div class="cw-2 decor">cw-2</div>
-  </div>
-  <div>*</div>
-  <div class="row">
-    <div class="cw-5 decor">cw-5</div>
-    <div class="cw-6 decor">cw-6</div>
-  </div>
-  <div>*</div>
-  <div class="row">
-    <div class="cw-7 decor">cw-7</div>
-    <div class="cw-5 decor">cw-5</div>
-    <div>*</div>
-  </div>
-  <div class="row">
-    <div class="cw-8 decor">cw-8</div>
-    <div class="cw-4 decor">cw-4</div>
-  </div>
-  <div>*</div>
-  <div class="row">
-    <div class="cw-9 decor">cw-9</div>
-    <div class="cw-3 decor">cw-3</div>
-  </div>
-  <div>*</div>
-  <div class="row">
-    <div class="cw-10 decor">cw-10</div>
-    <div class="cw-2 decor">cw-2</div>
-  </div>
-  <div>*</div>
-  <div class="row">
-    <div class="cw-11 decor">cw-11</div>
-    <div class="cw-1 decor">cw-1</div>
-  </div>
-  <div>*</div>
-  <div class="row">
-    <div class="cw-12 decor">cw-12</div>
-  </div>
-  </div>
-  <div class="main">
+  <body>
     <br>
-    <button class="btn bg-err btn-small">Press</button> <span>---</span>
-    <button class="btn bg-err">Press</button> <span>---</span>
-    <div class="btn bg-err btn-big">Press</div> <span>---</span>
-    <div class="btn bg-err">Press</div>
+    <br>
+    <div class="modal-bg" id="modal-padding">
+      <div class="modal" id="send">
+        <button class="modal-close">Понятно</button>
+      </div>
+    </div>
+    <button class="btn bg-suc btn-small modal-trigger" data-target='send success'>Pres to test modal</button>
+    <div class="btn bg-warn modal-trigger" data-target='send warning'>Pres to test modal</div>
+    <div class="btn bg-info btn-big modal-trigger" data-target='send info'>Pres to test modal</div>
+    <div>* * *</div>
+    <div class="row">
+      <div class="cw-1 decor">cw-1</div>
+      <div class="cw-2 decor">cw-2</div>
+      <div class="cw-3 decor">cw-3</div>
+      <div class="cw-4 decor">cw-4</div>
+    </div>
     <div>*</div>
-    <button class="btn bg-suc">Press</button>
+    <div class="row">
+      <div class="cw-2 decor">cw-2</div>
+      <div class="cw-2 decor">cw-2</div>
+      <div class="cw-2 decor">cw-2</div>
+      <div class="cw-2 decor">cw-2</div>
+      <div class="cw-2 decor">cw-2</div>
+      <div class="cw-2 decor">cw-2</div>
+    </div>
     <div>*</div>
-    <button class="btn bg-dark">Press</button>
+    <div class="row">
+      <div class="cw-5 decor">cw-5</div>
+      <div class="cw-6 decor">cw-6</div>
+    </div>
     <div>*</div>
-    <button class="btn bg-warn">Press</button>
+    <div class="row">
+      <div class="cw-7 decor">cw-7</div>
+      <div class="cw-5 decor">cw-5</div>
+      <div>*</div>
+    </div>
+    <div class="row">
+      <div class="cw-8 decor">cw-8</div>
+      <div class="cw-4 decor">cw-4</div>
+    </div>
     <div>*</div>
-    <button class="btn bg-info">Presspress</button>
+    <div class="row">
+      <div class="cw-9 decor">cw-9</div>
+      <div class="cw-3 decor">cw-3</div>
+    </div>
     <div>*</div>
-    <button class="btn bg-green">Press</button>
-  </div>
-</body>
+    <div class="row">
+      <div class="cw-10 decor">cw-10</div>
+      <div class="cw-2 decor">cw-2</div>
+    </div>
+    <div>*</div>
+    <div class="row">
+      <div class="cw-11 decor">cw-11</div>
+      <div class="cw-1 decor">cw-1</div>
+    </div>
+    <div>*</div>
+    <div class="row">
+      <div class="cw-12 decor">cw-12</div>
+    </div>
+    </div>
+    <div class="main">
+
+      <br>
+      <button class="btn bg-err btn-small">Press</button> <span>---</span>
+      <button class="btn bg-err">Press</button> <span>---</span>
+      <div class="btn bg-err btn-big">Press</div> <span>---</span>
+      <div class="btn bg-err">Press</div>
+      <div>*</div>
+      <button class="btn bg-suc">Press</button>
+      <div>*</div>
+      <button class="btn bg-dark">Press</button>
+      <div>*</div>
+      <button class="btn bg-warn">Press</button>
+      <div>*</div>
+      <button class="btn bg-info">Presspress</button>
+      <div>*</div>
+      <button class="btn bg-green modal-trigger">Press</button>
+    </div>
+    <script src="js/burger.js"></script>
+    <script src="js/modal.js"></script>
+  </body>
 
 </html>
