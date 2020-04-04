@@ -41,15 +41,6 @@ function drawSlider(sliderAreaId, config1) {
    showButton(currentPosition,buttonL, buttonR,sliderSize);
 
   buttonL.addEventListener('click', () => {
-    if (currentPosition == sliderSize-1) {
-      return;
-    }
-    currentPosition += 1;
-    const disposition = slideWidth * currentPosition*-1;
-    screen.style.marginLeft = disposition.toString() + 'px';
-    showButton(currentPosition,buttonL, buttonR,sliderSize);
-  });
-  buttonR.addEventListener('click', () => {
     if (currentPosition == 0) {
       return;
     }
@@ -57,16 +48,26 @@ function drawSlider(sliderAreaId, config1) {
     const disposition = slideWidth * currentPosition*-1;
     screen.style.marginLeft = disposition.toString() + 'px';
     showButton(currentPosition,buttonL, buttonR,sliderSize);
+  });
+
+  buttonR.addEventListener('click', () => {
+    if (currentPosition == sliderSize-1) {
+      return;
+    }
+    currentPosition += 1;
+    const disposition = slideWidth * currentPosition*-1;
+    screen.style.marginLeft = disposition.toString() + 'px';
+    showButton(currentPosition,buttonL, buttonR,sliderSize);
   })
 }
 
 function showButton(position, bl, br, cap) {
-  if (position == 0) {
+  if (position == cap-1) {
     br.classList.add('button-hide');
   } else {
     br.classList.remove('button-hide');
   }
-  if (position == cap-1) {
+  if (position == 0) {
     bl.classList.add('button-hide');
   } else {
     bl.classList.remove('button-hide');
