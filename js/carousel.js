@@ -1,21 +1,21 @@
 
 
-const config1 = ['https://loremflickr.com/320/240', 'https://loremflickr.com/320/240/brazil,rio', 'https://loremflickr.com/g/320/240/paris,girl/all'];
+const arrSlides = ['https://loremflickr.com/320/240', 'https://loremflickr.com/320/240/brazil,rio', 'https://loremflickr.com/g/320/240/paris,girl/all'];
 let id = 'carousel1';
-drawSlider(id, config1);
+drawSlider(id, arrSlides);
 
 const buttonL = document.getElementById('button-left');
 
-function drawSlider(sliderAreaId, config1) {
+function drawSlider(sliderAreaId, arrSlides) {
   const screen = document.getElementById(sliderAreaId);
   const slideWidth = 400;
-  const sliderSize = config1.length;
+  const sliderSize = arrSlides.length;
   const buttonL = document.getElementById('button-left');
   const buttonR = document.getElementById('button-right');
 
   for (let i = 0; i < sliderSize; i++) {
     let nodeImg = document.createElement('img');
-    nodeImg.src = config1[i];
+    nodeImg.src = arrSlides[i];
     nodeImg.className = 'virtualImg';
     nodeImg.width = slideWidth;
     screen.append(nodeImg);
