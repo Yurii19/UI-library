@@ -1,25 +1,43 @@
 .page-header {
   font-family: 'Courier New', Courier, monospace;
 }
-
+#usersTable {
+  font-size: 1.3em;
+  display: inline-block;
+  font-family:  monospace;
+}
+.table-header {
+  font-weight: 600;
+  border: 2px solid blue;
+}
 .tr {
-  // justify-content: space-between;
-  // width: 500px;
   display: flex;
-  border: 1px solid red;
+  border-bottom: 1px solid rgba(0, 0, 255, 0.2);
 }
 .td {
   text-align: left;
-  width: 100px;
-  border: 1px dotted rgb(98, 0, 255);
+  width: 110px;
+  border-right: 1px solid rgba(0, 0, 255, 0.2);
+  padding: 0 7px 0 7px;
+  word-wrap: break-word;
+}
+.align-right {
+  .td;
 }
 
 .align-right {
   width: 100px;
   text-align: right;
-  border: 1px dotted rgb(0, 255, 42);
 }
 
 .fas {
   cursor: pointer;
+  user-select: none;
+  display: flex;
+}
+
+.b-sort {
+  margin-left: 7px;
+  padding: 0;
+  border-style: none;
 }
