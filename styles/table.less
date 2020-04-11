@@ -5,22 +5,41 @@
   font-size: 1.3em;
   display: inline-block;
   font-family:  monospace;
+  background-color: rgba(0, 0, 0, 0.05);   
 }
 .table-header {
   font-weight: 600;
-  border: 2px solid blue;
 }
+.table-search {
+  padding: 10px;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+}
+.table-name {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.input-search {
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.05); 
+  border-style: none;
+  padding-left: 5px;
+}
+
 .tr {
   display: flex;
+  padding: 5px 10px 5px 10px;
   border-bottom: 1px solid rgba(0, 0, 255, 0.2);
 }
+
 .td {
   text-align: left;
   width: 110px;
-  border-right: 1px solid rgba(0, 0, 255, 0.2);
   padding: 0 7px 0 7px;
   word-wrap: break-word;
 }
+
 .align-right {
   .td;
 }
