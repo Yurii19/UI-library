@@ -1,5 +1,5 @@
 
-function DataTable(config, data) {
+function DataTable(config, usersData) {
   const tableParent = document.getElementById(config.parent);
   tableParent.innerHTML = '';
   const tableCap = document.createElement('div');
@@ -13,8 +13,12 @@ function DataTable(config, data) {
   tableBody.classList.add('table-body');
   let thr = document.createElement('tr');
   thr.className = 'tr';
-  const searchInput = document.createElement('input');
+  let btnAddUser = document.createElement('button');
+  btnAddUser.classList.add('btn-add');
+  btnAddUser.setAttribute('id', 'addUser');
+  btnAddUser.innerHTML = 'добавить';
 
+  const searchInput = document.createElement('input');
   searchInput.classList.add('input-search');
   searchInput.placeholder = 'search';
   searchInput.setAttribute('type', 'text');
@@ -24,6 +28,7 @@ function DataTable(config, data) {
   tableParent.append(tableHead);
   tableParent.append(tableBody);
   tableCap.append(tableName);
+  tableName.append(btnAddUser);
   if (config1.search) {
     tableCap.append(searchInput);
   };
@@ -58,14 +63,31 @@ function DataTable(config, data) {
     let seqNum = 1;
     tableBody.innerHTML = '';
     lData.forEach(element => {
+      let btnRemove = document.createElement('button');
+      btnRemove.classList.add('btn-actions');
+      btnRemove.classList.add('btn-remove');
+      btnRemove.innerHTML = 'удалить';
+      btnRemove.setAttribute('data-id', element.id);
+      let btnEdit = document.createElement('button');
+      btnEdit.classList.add('btn-actions');
+      btnEdit.innerHTML = '~';
       let tbr = document.createElement('tr');
       tbr.className = 'tr';
-      for (const key in element) {
+      lConfig.columns.forEach((tableColumn) => {
+        const key = tableColumn.value;
         let tbd = document.createElement('td');
-        tbd.className = typeof (element[key]) === 'number' && key != 'id' ? 'align-right' : 'td';
-        tbd.innerText = key === 'id' ? seqNum : element[key];
+        tbd.className = tableColumn.type === 'number' && key != 'id' ? 'align-right' : 'td';
+        if (key === '_index') {
+          tbd.innerText = seqNum;
+        } else if (key === 'birthday') {
+          tbd.innerText = getDate(element['birthday']);
+        } else if (key === 'actions') {
+          tbd.append(btnRemove);
+          tbd.append(btnEdit);
+          // tbd.classList.add('btn-actions');
+        } else (tbd.innerText = element[key]);
         tbr.append(tbd);
-      }
+      })
       seqNum++;
       tableBody.append(tbr);
     });
@@ -99,8 +121,8 @@ function DataTable(config, data) {
 
         for (let i = 0; i < searchFields.length; i++) {
           const userField = searchFields[i];
-          for (let j = 0; j < data.length; j++) {
-            const userObj = data[j];
+          for (let j = 0; j < usersData.length; j++) {
+            const userObj = usersData[j];
             for (let k = 0; k < searchFilters.length; k++) {
               const theFilter = searchFilters[k];
               if (theFilter(userObj[userField]).includes(theFilter(querry))) {
@@ -136,25 +158,48 @@ function DataTable(config, data) {
       renderTable(config, dynamicData);
     }
   });
-  renderTable(config, data);
+
+  document.getElementById('usersTable').addEventListener('click', (ev) => {
+    if (ev.target.classList.contains('btn-actions')) {
+
+      let userId = ev.target.dataset.id;
+      const user = dynamicData.find(el => el.id === userId);
+      const message = 'Are you really want remove the user ' + user.name + ' ' + user.surname + ' ?';
+      let delTriger = confirm(message);
+      if (delTriger) {
+        const reqUrl = config1.apiUrl + '/' + userId;
+        let res = fetch(reqUrl, {
+          method: 'DELETE',
+        }).then(() => {
+          fetch(config1.apiUrl)
+            .then((responce) => {
+              return responce.json();
+            })
+            .then((data) => { dynamicData = data.slice(); renderTable(config, dynamicData); });
+        });
+      }
+    }
+  });
+
+  renderTable(config, usersData);
 }
 
 const config1 = {
+  apiUrl: 'https://5e938231c7393c0016de48e6.mockapi.io/api/ps5/users',
   defaultSort: { field: 'id', type: 'ascending' },
   parent: 'usersTable',
   columns: [
     { title: '№', value: '_index' },
     { title: 'Имя', value: 'name' },
-    { title: 'Фамилия', value: 'surname', sortable: true },
-    { title: 'Возраст', value: 'age', type: 'number', sortable: true },
+    { title: 'Фамилия', value: 'surname' },
+    { title: 'Возраст', value: 'birthday', type: 'number' },
+    { title: 'Действия', value: 'actions' }
   ],
   search: {
     fields: ['name', 'surname'],
     filters: [
-      v => v.toLowerCase(), // это лямбда-функция, не бойтесь :)
-      // v => toKeyboardLayout(v, 'ru'), // функция, которая для каждой английской буквы находит на клавиатуре русский аналог и возвращает "переведённую" строку. полезно, если человек начал печатать, забыв перед этим переключить раскладку
-      // v => toKeyboardLayout(v, 'en') // то же самое, но ищет английские соответствия для русских букв
-    ] // а это был массив функций :))
+      v => v.toLowerCase(),
+    ]
   }
 };
 
@@ -166,7 +211,18 @@ const users = [
   { id: 30054, name: 'Ричард', surname: 'Гериот', age: 14 },
 ];
 
-let dynamicData = users.slice();
+let dynamicData = [];
+
+fetch(config1.apiUrl)
+  .then((responce) => {
+    return responce.json();
+  })
+  .then((data) => { dynamicData = data.slice(); DataTable(config1, dynamicData); });
+
+function getDate(dstr) {
+  const birthYear = new Date(dstr).getFullYear();
+  return new Date().getFullYear() - birthYear;
+}
 
 let sortState = {
   setCounter: function () {
@@ -191,8 +247,6 @@ let sortState = {
   sortCounter: 0,
 };
 
-DataTable(config1, dynamicData);
-
 function sortData(inpData, State) {
   switch (State.getCounter()) {
     case 1:
@@ -206,4 +260,3 @@ function sortData(inpData, State) {
       break;
   }
 }
-

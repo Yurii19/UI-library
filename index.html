@@ -25,21 +25,40 @@
   <h2 class="page-header">Table demo</h2>
   <div id="usersTable"></div>
   
+  <div class="modal-bg hide-modal" id="modal-padding">
 
-  <div class="modal-bg" id="modal-padding">
-    <div class="modal" id="send">
-      <!-- <button class="modal-close">Понятно</button> -->
+    <div class="modal hide-modal" id="send">
+      <button class="cross-close modal-close">X</button>
+      <h3 class="modal-header">Send</h3>
+      <div class="modal-body">Text message</div>
+      <button class="modal-close modal-lower-button">Понятно</button>
     </div>
+
+    <div class="modal hide-modal" id="load">
+      <button class="cross-close modal-close">X</button>
+      <h3 class="modal-header">Load</h3>
+      <div class="modal-body">Text messageText messageText messageText messageText messageText messageText messageText messageText messageText messageText messageText messageText messageText messageText messageText message</div>
+      <button class="modal-close modal-lower-button">Понятно</button>
+    </div>
+
+    <div class="modal hide-modal" id="warning">
+      <button class="cross-close modal-close">X</button>
+      <h3 class="modal-header">Warning</h3>
+      <div class="modal-body" id="warning-message">Text message</div>
+      <button class="modal-close modal-lower-button">Понятно</button>
+    </div>
+
   </div>
+    
   <div class="slider-frame">
     <div id="carousel1"></div>
     <i id="button-left" class="my-control fas fa-arrow-circle-left"></i>
     <i id="button-right" class="my-control fas fa-arrow-circle-right"></i>
   </div>
   <br>
-  <div class="btn bg-suc btn-small modal-trigger" data-target='send success'>Pres to test modal</div>
-  <div class="btn bg-warn modal-trigger" data-target='send warning'>Pres to test modal</div>
-  <div class="btn bg-info btn-big modal-trigger" data-target='send info'>Pres to test modal</div>
+  <div class="btn bg-suc btn-small modal-trigger" data-target='load'>Pres to test modal</div>
+  <div class="btn bg-warn modal-trigger" data-target='warning'>Pres to test modal</div>
+  <div class="btn bg-info btn-big modal-trigger" data-target='send'>Pres to test modal</div>
   <div>* * *</div>
   <div class="row">
     <div class="cw-1 decor">cw-1</div>
@@ -106,7 +125,7 @@
     <div>*</div>
     <button class="btn bg-info">Presspress</button>
     <div>*</div>
-    <button class="btn bg-green modal-trigger">Press</button>
+    <button class="btn bg-green">Press</button>
   </div>
 
   <script src="js/table.js"></script>
