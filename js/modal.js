@@ -7,6 +7,7 @@ document.addEventListener('click', (event) => {
     let modId = event.target.dataset.target;
     Modal.classList.toggle('hide-modal');
     document.getElementById(modId).classList.toggle('hide-modal');
+    document.getElementById('sendBody').innerHTML='message for sending';
   }
 });
 
