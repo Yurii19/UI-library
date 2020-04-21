@@ -1,6 +1,6 @@
 
 function DataTable(config, paramData) {
-  usersData = paramData.slice();
+  let usersData = paramData.slice();
   const tableParent = document.getElementById(config.parent);
   tableParent.innerHTML = '';
   const tableCap = document.createElement('div');
@@ -16,6 +16,7 @@ function DataTable(config, paramData) {
   thr.className = 'tr';
   let btnAddUser = document.createElement('button');
   btnAddUser.classList.add('btn-add');
+  btnAddUser.setAttribute('data-method', 'POST');
   btnAddUser.setAttribute('id', 'addUser');
   btnAddUser.innerHTML = 'добавить';
 
@@ -36,9 +37,6 @@ function DataTable(config, paramData) {
 
   tableHead.append(thr);
 
-  // config1.columns.forEach(el => {
-  //   console.log(el.value);
-  // })
   function renderTable(lConfig, lData) {
     thr.innerHTML = '';
     drawTableHead(lConfig.columns);
@@ -54,7 +52,7 @@ function DataTable(config, paramData) {
       if (querry === '') {
         inData = localData.slice();
       } else {
-        data.forEach(element => {
+        paramData.forEach(element => {
           for (const key in element) {
             if (element[key].toString().includes(querry)) {
               inData.push(element);
@@ -69,34 +67,16 @@ function DataTable(config, paramData) {
       if (querry === '') {
         inData = localData.slice();
       } else {
-        selectedFields = [];
-        const searchFields = config.search.fields;
-        const searchFilters = config.search.filters;
-
-        for (let i = 0; i < searchFields.length; i++) {
-          const userField = searchFields[i];
-          for (let j = 0; j < usersData.length; j++) {
-            const userObj = usersData[j];
-            for (let k = 0; k < searchFilters.length; k++) {
-              const theFilter = searchFilters[k];
-              if (theFilter(userObj[userField]).includes(theFilter(querry))) {
-                console.log(theFilter);
-                if (inData.includes(userObj)) {
-                  break;
-                } else {
-                  inData.push(userObj);
-                }
-              }
-            }
-          }
-        }
+       inData = searchByParams(config.search.fields, localData, config.search.filters, querry);
       }
     }
 
-    paramData = inData.slice();
-    renderTable(config, inData);
+    usersData = inData.slice();
+    sortData(usersData, sortState);
+    renderTable(config, usersData);
 
   });
+  
   //sort table by value
   document.getElementById('usersTable').addEventListener('click', (ev) => {
     if (ev.target.parentNode.classList.contains('b-sort')) {
@@ -114,9 +94,32 @@ function DataTable(config, paramData) {
     }
   });
 
+  //edit user
+  document.getElementById('usersTable').addEventListener('click', (ev) => {
+    if (ev.target.classList.contains('btn-edit')) {
+      makeModal(config.columns);
+      let targetUser = localData.find(el => el.id === ev.target.dataset.id);
+      config.columns.forEach(el => {
+        if (el.editable != false) {
+          let nodeInput = document.getElementById('newUser-' + el.getValue());
+          nodeInput.value = targetUser[el.getValue()];
+        };
+      });
+      let addNewUser = function () {
+        let newUser = setUser(config.columns, targetUser);
+        const url = config.apiUrl + '/' + targetUser.id;
+        const requestMethod = ev.target.dataset.method;
+        sendRequest(requestMethod, url, newUser);
+        confimNewUser.removeEventListener('click', addNewUser, false);
+      };
+      const confimNewUser = document.getElementById('sendConfirm');
+      confimNewUser.addEventListener('click', addNewUser);
+    }
+  });
+
   // remove user
   document.getElementById('usersTable').addEventListener('click', (ev) => {
-    if (ev.target.classList.contains('btn-actions')) {
+    if (ev.target.classList.contains('btn-remove')) {
 
       let userId = ev.target.dataset.id;
       const user = localData.find(el => el.id === userId);
@@ -135,57 +138,15 @@ function DataTable(config, paramData) {
   });
 
   //add user
-  document.getElementById('addUser').addEventListener('click', () => {
-    let addWindow = document.getElementById('send');
-    let textArea = document.getElementById('sendBody');
-    textArea.innerHTML = '';
-    let bgr = document.getElementById('modal-padding');
-    bgr.classList.toggle('hide-modal');
-    addWindow.classList.remove('hide-modal');
-
-    config.columns.forEach((el) => {
-      if (el.editable != false) {
-        const newUser = document.createElement('input');
-        const inpLabel = document.createElement('label');
-        inpLabel.setAttribute('for', 'newUser-' + el.value);
-        if (el.title === 'Возраст') {
-          newUser.setAttribute('id', 'newUser-' + el.getValue());
-          inpLabel.innerText = 'Дата рождения';
-          newUser.setAttribute('type', 'date');
-        } else {
-          inpLabel.innerText = el.title;
-          newUser.setAttribute('id', 'newUser-' + el.getValue());
-        }
-        textArea.append(newUser);
-        newUser.before(inpLabel);
-      }
-
-    });
-
+  document.getElementById('addUser').addEventListener('click', (ev) => {
+    makeModal(config.columns);
+    let userMold = { id: 1, createdAt: `${Date.now()}`, name: '', avatar: 'url', surname: '', birthday: '' };
     let addNewUser = function () {
-      let userObj = { id: 1, createdAt: `${Date.now()}`, name: '', avatar: 'url', surname: '', birthday: '' };
-      config.columns.forEach((el) => {
-        if (el.editable != false) {
-          let nodeInput = document.getElementById('newUser-' + el.getValue());
-          userObj[el.value] = nodeInput.value;
-          console.log('val -> ' + nodeInput.value);
-        }
-      })
-      fetch(config1.apiUrl, {
-        method: 'POST',
-        body: JSON.stringify(userObj),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(() => {
-          fetch(config1.apiUrl)
-            .then((responce) => { return responce.json(); })
-            .then((data) => { localData = data.slice(); renderTable(config, localData); });
-        })
+      let newUser = setUser(config.columns, userMold);
+      const requestMethod = ev.target.dataset.method;
+      sendRequest(requestMethod, config.apiUrl, newUser);
       confimNewUser.removeEventListener('click', addNewUser, false);
     };
-
     const confimNewUser = document.getElementById('sendConfirm');
     confimNewUser.addEventListener('click', addNewUser);
   });
@@ -221,17 +182,91 @@ function DataTable(config, paramData) {
 
   //----functions sections-----
 
+  function searchByParams(fields, data, filters, searchReq){
+    let dataResult = [];
+    for (let i = 0; i < fields.length; i++) {
+      const userField = fields[i];
+      for (let j = 0; j < data.length; j++) {
+        const userObj = data[j];
+        for (let k = 0; k < filters.length; k++) {
+          const theFilter = filters[k];
+          if (theFilter(userObj[userField]).includes(theFilter(searchReq))) {
+            if (dataResult.includes(userObj)) {
+              break;
+            } else {
+              dataResult.push(userObj);
+            }
+          }
+        }
+      }
+    }
+    return dataResult;
+  };
+
+  function sendRequest(method, url, data) {
+    fetch(url, {
+      method: method,
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(() => {
+        fetch(config1.apiUrl)
+          .then((responce) => { return responce.json(); })
+          .then((data) => { localData = data.slice(); renderTable(config, localData); });
+      })
+  };
+
+  function setUser(columns, userObj) {
+    columns.forEach((el) => {
+      if (el.editable != false) {
+        let nodeInput = document.getElementById('newUser-' + el.getValue());
+        userObj[el.getValue()] = nodeInput.value;
+      }
+    })
+    return userObj;
+  }
+
+  function makeModal(columns) {
+    let addWindow = document.getElementById('send');
+    let textArea = document.getElementById('sendBody');
+    textArea.innerHTML = '';
+    let bgr = document.getElementById('modal-padding');
+    bgr.classList.toggle('hide-modal');
+    addWindow.classList.remove('hide-modal');
+
+    columns.forEach((el) => {
+      if (el.editable != false) {
+        const newUser = document.createElement('input');
+        const inpLabel = document.createElement('label');
+        inpLabel.setAttribute('for', 'newUser-' + el.getValue());
+        if (el.title === 'Возраст') {
+          newUser.setAttribute('id', 'newUser-' + el.getValue());
+          inpLabel.innerText = 'Дата рождения';
+          newUser.setAttribute('type', 'date');
+        } else {
+          inpLabel.innerText = el.title;
+          newUser.setAttribute('id', 'newUser-' + el.getValue());
+        }
+        textArea.append(newUser);
+        newUser.before(inpLabel);
+      }
+    });
+  }
+
   function drawTableBody(users, columns) {
     let seqNum = 1;
     users.forEach(element => {
       let btnRemove = document.createElement('button');
-      btnRemove.classList.add('btn-actions');
       btnRemove.classList.add('btn-remove');
-      btnRemove.innerHTML = 'удалить';
+      btnRemove.innerHTML = 'delete';
       btnRemove.setAttribute('data-id', element.id);
       let btnEdit = document.createElement('button');
-      btnEdit.classList.add('btn-actions');
+      btnEdit.classList.add('btn-edit');
       btnEdit.innerHTML = 'edit';
+      btnEdit.setAttribute('data-id', element.id);
+      btnEdit.setAttribute('data-method', 'PUT');
       let tbr = document.createElement('tr');
       tbr.className = 'tr';
       columns.forEach((tableColumn) => {
@@ -245,7 +280,6 @@ function DataTable(config, paramData) {
         } else if (key === 'actions') {
           tbd.append(btnRemove);
           tbd.append(btnEdit);
-          // tbd.classList.add('btn-actions');
         } else (tbd.innerText = element[key]);
         tbr.append(tbd);
       })
