@@ -37,46 +37,11 @@ function DataTable(config, paramData) {
 
   tableHead.append(thr);
 
-  function renderTable(lConfig, lData) {
-    thr.innerHTML = '';
-    drawTableHead(lConfig.columns);
-    tableBody.innerHTML = '';
-    drawTableBody(lData, lConfig.columns);
-  }
-
   searchInput.addEventListener('input', (ev) => {
-    let inData = [];
-    let querry = ev.target.value;
-
-    if (!config.search.fields) { //default search if fields does not exist
-      if (querry === '') {
-        inData = localData.slice();
-      } else {
-        paramData.forEach(element => {
-          for (const key in element) {
-            if (element[key].toString().includes(querry)) {
-              inData.push(element);
-              break;
-            }
-          }
-        })
-      }
-    }
-
-    if (config.search.fields) {
-      if (querry === '') {
-        inData = localData.slice();
-      } else {
-       inData = searchByParams(config.search.fields, localData, config.search.filters, querry);
-      }
-    }
-
-    usersData = inData.slice();
-    sortData(usersData, sortState);
+    searchState.searchString = ev.target.value;
     renderTable(config, usersData);
-
   });
-  
+
   //sort table by value
   document.getElementById('usersTable').addEventListener('click', (ev) => {
     if (ev.target.parentNode.classList.contains('b-sort')) {
@@ -152,7 +117,8 @@ function DataTable(config, paramData) {
   });
 
   let searchState = {
-    searchString: '',
+    //getsearchString: function () { return this.searchString },
+     searchString: '',
   }
 
   let sortState = {
@@ -182,7 +148,47 @@ function DataTable(config, paramData) {
 
   //----functions sections-----
 
-  function searchByParams(fields, data, filters, searchReq){
+  function renderTable(lConfig) {
+    filterBySearch(searchState.searchString);
+    thr.innerHTML = '';
+    drawTableHead(lConfig.columns);
+    tableBody.innerHTML = '';
+    drawTableBody(usersData, lConfig.columns);
+  }
+
+  function filterBySearch(querry) {
+    console.log(`${querry} -> ${searchState.searchString}`);
+    let inData = [];
+    if (!config.search.fields) { //default search if fields does not exist
+      if (querry === '') {
+        inData = localData.slice();
+      } else {
+        paramData.forEach(element => {
+          for (const key in element) {
+            if (element[key].toString().includes(querry)) {
+              inData.push(element);
+              break;
+            }
+          }
+        })
+      }
+    }
+
+    if (config.search.fields) {
+      if (querry === '') {
+        inData = localData.slice();
+      } else {
+        inData = searchByParams(config.search.fields, localData, config.search.filters, querry);
+      }
+    }
+
+    usersData = inData.slice();
+    sortData(usersData, sortState);
+    // renderTable(config, usersData);
+  }
+
+
+  function searchByParams(fields, data, filters, searchReq) {
     let dataResult = [];
     for (let i = 0; i < fields.length; i++) {
       const userField = fields[i];

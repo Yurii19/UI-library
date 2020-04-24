@@ -1,7 +1,7 @@
 .page-header {
   font-family: 'Courier New', Courier, monospace;
 }
-#usersTable {
+.user-table {
   font-size: 1.3em;
   display: inline-block;
   font-family:  monospace;
@@ -72,4 +72,22 @@
 
 .btn-remove {
   background-color: rgba(255, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+  .td {
+    text-align: left;
+    width: 20%;
+    padding: 0 7px 0 7px;
+    word-wrap: break-word;
+  }
+
+  .user-table {
+   // font-size: 1.3em;
+    display: flex;
+    flex-direction: column;
+   // font-family:  monospace;
+    //background-color: rgba(0, 0, 0, 0.05);   
+  }
+
 }
