@@ -281,6 +281,7 @@ function DataTable(config, paramData) {
         tbd.className = tableColumn.type === 'number' && key != 'id' ? 'align-right' : 'td';
         if (key === '_index') {
           tbd.innerText = seqNum;
+          tbd.classList.add('users-order');
         } else if (tableColumn.title === 'Возраст') {
           tbd.innerText = key(element);
         } else if (key === 'actions') {
@@ -300,6 +301,9 @@ function DataTable(config, paramData) {
       thd.className = element.type === 'number' ? 'align-right' : 'td';
       thd.innerText = element.title;
       thr.append(thd);
+      if (element.value === '_index') {
+        thd.classList.add('users-order');
+      }
       if (element.sortable) {
         let arrow = document.createElement('i');
         const sortButton = document.createElement('button');
@@ -310,6 +314,7 @@ function DataTable(config, paramData) {
         } else {
           arrow.classList.add('fa-sort');
         }
+       
         sortButton.setAttribute('data-mark', element.value);
         arrow.setAttribute('data-mark', element.value);
         sortButton.append(arrow);
