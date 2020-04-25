@@ -8,7 +8,13 @@ const buttonL = document.getElementById('button-left');
 
 function drawSlider(sliderAreaId, arrSlides) {
   const screen = document.getElementById(sliderAreaId);
-  const slideWidth = 400;
+  const screenWidth = document.documentElement.clientWidth;
+
+  const slideWidth = screenWidth < 500 ? 300 : 400;
+  console.log(slideWidth);
+
+  const sliderWrap = document.getElementById('sliderWrap');
+  sliderWrap.style.width = slideWidth + 'px';
   const sliderSize = arrSlides.length;
   const buttonL = document.getElementById('button-left');
   const buttonR = document.getElementById('button-right');
@@ -36,6 +42,7 @@ function drawSlider(sliderAreaId, arrSlides) {
   });
 
   buttonR.addEventListener('click', () => {
+    
     if (currentPosition == sliderSize-1) {
       return;
     }
