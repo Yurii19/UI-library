@@ -9,6 +9,7 @@
   <link rel="stylesheet/less" type="text/css" href="styles/style.less" />
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
   <script src="https://kit.fontawesome.com/a92211bf3b.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,14 @@
       <li class="menu-item"><a href="#">Пункт 3</a></li>
     </ul>
   </nav>
+
+  <div id="app">
+    <div class="inputBlock">
+      <my-input v-for="q in questions" :key="q.title" :type=q.type :title=q.title :placeholder=q.placeholder
+      :required=q.required />
+    </div>
+  </div>
+  
   <h2 class="page-header">Table demo</h2>
   <div id="usersTable" class="user-table"></div>
   
@@ -129,6 +138,8 @@
     <button class="btn bg-green">Press</button>
   </div>
 
+  <script src="components/my-input.js"></script>
+  <script src="main.js"></script>
   <script src="js/table.js"></script>
   <script src="js/modal.js"></script>
   <script src="js/carousel.js"></script>
