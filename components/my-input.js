@@ -9,6 +9,9 @@ Vue.component('my-input', {
     methods: {
       inpVal: function () {
         this.nonFocused = true;
+      },
+      passValue: function() {
+        this.$emit('inputvalue', {fieldname: this.title, fieldvalue: this.userMessage});
       }
     },
     template: `
@@ -19,6 +22,7 @@ Vue.component('my-input', {
       <input 
         v-bind:class = "{ nonValid: userMessage == '' && required && nonFocused }"
         @blur="inpVal" 
+        @input="passValue"
         v-model="userMessage" 
         :type="type" 
         :placeholder="placeholder" 

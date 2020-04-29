@@ -4,7 +4,7 @@
   width: 300px;
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
-  border: 1px solid black;
+  border: 1px groove black;
   border-radius: 10px;
 }
 .inputBlock > div {
@@ -13,7 +13,14 @@
     margin-bottom: 10px;
   }
 
+  .inputBlock > div > input {
+    border-radius: 3px;
+    outline: none;
+    padding-left: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
   .nonValid {
     outline: none;
-    border: 2px solid red;
+    border: 1px solid red !important;
   }

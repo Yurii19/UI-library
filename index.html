@@ -26,7 +26,12 @@
 
   <div id="app">
     <div class="inputBlock">
-      <my-input v-for="q in questions" :key="q.title" :type=q.type :title=q.title :placeholder=q.placeholder
+      <my-input v-for="q in questions" 
+      v-on:inputvalue="handleInputedValue"
+      :key="q.title" 
+      :type=q.type 
+      :title=q.title 
+      :placeholder=q.placeholder
       :required=q.required />
     </div>
   </div>
