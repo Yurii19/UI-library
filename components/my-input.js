@@ -3,6 +3,12 @@ Vue.component('my-input', {
     data: function () {
       return {
         userMessage: '',
+        nonFocused: false
+      }
+    },
+    methods: {
+      inpVal: function () {
+        this.nonFocused = true;
       }
     },
     template: `
@@ -11,6 +17,8 @@ Vue.component('my-input', {
       <span v-if="required">*</span>
       </span>
       <input 
+        v-bind:class = "{ nonValid: userMessage == '' && required && nonFocused }"
+        @blur="inpVal" 
         v-model="userMessage" 
         :type="type" 
         :placeholder="placeholder" 
