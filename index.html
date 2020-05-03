@@ -26,6 +26,8 @@
 
   <div id="app">
     <div class="inputBlock">
+      <h3 class="inputBlock_header">Join us</h3>
+      <hr style="border: 1px solid white;">
       <my-input v-for="q in questions" 
       v-on:inputvalue="handleInputedValue"
       :key="q.title" 
