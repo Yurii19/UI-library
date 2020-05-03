@@ -70,15 +70,15 @@ function DataTable(config, paramData) {
           nodeInput.value = targetUser[el.getValue()];
         };
       });
-      let addNewUser = function () {
-        let newUser = setUser(config.columns, targetUser);
-        const url = config.apiUrl + '/' + targetUser.id;
-        const requestMethod = ev.target.dataset.method;
-        sendRequest(requestMethod, url, newUser);
-        confimNewUser.removeEventListener('click', addNewUser, false);
-      };
-      const confimNewUser = document.getElementById('sendConfirm');
-      confimNewUser.addEventListener('click', addNewUser);
+      const requestMethod = ev.target.dataset.method;
+      const modal = document.getElementById('send');
+      modal.onclick = (ev) => {
+        const theButton = ev.target;
+        if (theButton.classList.contains('modal-accept')) {
+          let newUser = setUser(config.columns, targetUser);
+          sendRequest(requestMethod, config.apiUrl + '/' + targetUser.id, newUser);
+        }
+      }
     }
   });
 
@@ -92,32 +92,28 @@ function DataTable(config, paramData) {
       let delTriger = confirm(message);
       if (delTriger) {
         const reqUrl = config1.apiUrl + '/' + userId;
-        let res = fetch(reqUrl, { method: 'DELETE', })
-          .then(() => {
-            fetch(config1.apiUrl)
-              .then((responce) => { return responce.json(); })
-              .then((data) => { localData = data.slice(); renderTable(config, localData); });
-          });
+        sendRequest('DELETE', reqUrl);
       }
     }
   });
 
   //add user
-  document.getElementById('addUser').addEventListener('click', (ev) => {
+  document.getElementById('addUser').onclick = (ev) => {
     makeModal(config.columns);
     let userMold = { id: 1, createdAt: `${Date.now()}`, name: '', avatar: 'url', surname: '', birthday: '' };
-    let addNewUser = function () {
-      let newUser = setUser(config.columns, userMold);
-      const requestMethod = ev.target.dataset.method;
-      sendRequest(requestMethod, config.apiUrl, newUser);
-      confimNewUser.removeEventListener('click', addNewUser, false);
-    };
-    const confimNewUser = document.getElementById('sendConfirm');
-    confimNewUser.addEventListener('click', addNewUser);
-  });
+    const requestMethod = ev.target.dataset.method;
+    const modal = document.getElementById('send');
+    modal.onclick = (ev) => {
+      const theButton = ev.target;
+      if (theButton.classList.contains('modal-accept')) {
+        let newUser = setUser(config.columns, userMold);
+        sendRequest(requestMethod, config.apiUrl, newUser);
+      }
+    }
+    //this.onclick = false;
+  };
 
   let searchState = {
-    //getsearchString: function () { return this.searchString },
      searchString: '',
   }
 
@@ -157,7 +153,6 @@ function DataTable(config, paramData) {
   }
 
   function filterBySearch(querry) {
-    console.log(`${querry} -> ${searchState.searchString}`);
     let inData = [];
     if (!config.search.fields) { //default search if fields does not exist
       if (querry === '') {
