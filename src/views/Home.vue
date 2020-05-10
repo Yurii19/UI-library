@@ -26,7 +26,7 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HelloWorld from '@/components/HelloWorld.vue';
 import MyButton from "@/components/MyButton.vue";
 import Row from "@/components/grid/Row.vue";
 import Column from "@/components/grid/Column.vue";
@@ -34,7 +34,6 @@ import Modal from "@/components/Modal.vue";
 import Carousel from "@/components/Carousel.vue";
 import DataTable from "@/components/DataTable.vue";
 import { users, slides, columns, search }  from "@/components/localStore.ts";
-
 export default {
   name: "Home",
   components: {
@@ -53,6 +52,6 @@ export default {
       columnsConfig: columns,
       searchConfig: search,
     }
-  }
+  },
 };
 </script>
