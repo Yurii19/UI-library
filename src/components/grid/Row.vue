@@ -1,0 +1,33 @@
+<template>
+  <div class="row">
+    <slot></slot>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'Row',
+  // props: {
+  //   size: String,
+  //   color: String
+  // }
+});
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="less">
+.row {
+  border: 1px dotted red;
+  display: grid;
+  justify-content: left;
+  grid-template-columns: repeat(12, 1fr);
+}
+@media (max-width: 600px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+}
+</style>
