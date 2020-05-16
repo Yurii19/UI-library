@@ -2,16 +2,16 @@ Vue.component('my-input', {
   props: { type: String, title: String, placeholder: String, required: Boolean, pattern: String, errormessage: String, value:String },
   data: function () {
     return {
-     userMessage: this.value,
+    // userMessage: this.value,
       nonValid: false
     }
   },
 
   methods: {
-    checkInputedValue: function () {
+    checkInputedValue: function(inputedValue) {
       const regExp = new RegExp(this.pattern);
-      let res = regExp.exec(this.userMessage);
-      if (!res || this.userMessage === '') {
+      let res = regExp.exec(inputedValue);
+      if (!res || inputedValue === '') {
         this.nonValid = true;
       } else {
         this.nonValid = false;
@@ -38,7 +38,7 @@ Vue.component('my-input', {
         </span>
         <input 
           v-bind:class = "{ inputError: errorFlag }"
-          @blur="checkInputedValue" 
+          @blur="checkInputedValue($event.target.value)" 
           @input="passValue($event.target.value)"
           v-model=userMessage
           :type="type" 
