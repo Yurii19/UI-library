@@ -1,5 +1,5 @@
 <template>
-  <div class="btnv">
+  <div class="main-container">
     <h1>Here is button examples</h1>
     <div class="container">
       <MyButton :color="'bg-err'">
@@ -40,9 +40,11 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="less">
+@import "../styles/main.less";
+
 .container {
   display: flex;
-  border: 1px dotted black;
+  border-top: 1px dotted black;
   height: 100px;
   justify-content: space-around;
   align-items: center;

@@ -1,5 +1,5 @@
 <template>
-    <button v-bind:class="[color, size]"
+<button v-bind:class="[color, size]"
     @click="sendClick"
     >
    <slot>Press</slot>
@@ -32,6 +32,7 @@ export default Vue.extend({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+
 
 @err: rgba(252, 0, 0, 1);
 @suc: rgba(0, 252, 105, 1);

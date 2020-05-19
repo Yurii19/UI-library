@@ -1,0 +1,34 @@
+
+.main-basis {
+  //  border-left: 1px dotted black;
+  //  border-right: 1px dotted black;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: rgba(161, 181, 54, 0.36);
+  padding-bottom: 20px;
+}
+.main-container {
+  .main-basis;
+  max-width: 900px;
+}
+
+@media (max-width: 600px){
+  .main-container {
+    .main-basis;
+    max-width: 600px;
+  }
+  button {
+    color: green !important;
+  }
+}
+
+@media (max-width: 400px){
+  .main-container {
+    .main-basis;
+    width: 100%;
+  }
+  button {
+    color: red !important;
+  }
+}

@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    
+    <h1>Welcome to my project!</h1>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <MyButton :color="'bg-err'" ><template>close</template></MyButton>
+    <!-- <MyButton :color="'bg-err'" ><template>close</template></MyButton>
     <MyButton :color="'btn'" ><template>button by slot</template></MyButton>
     <MyButton :color="'bg-dark'" ><template>x</template></MyButton>
     <Row>
@@ -24,7 +24,7 @@
     v-bind:images="carouselSlides"
     />
     <DataTable :items="usersSet" :columns="columnsConfig" :search="searchConfig"/>
-    <!-- <MyModal> -->
+    <MyModal> -->
   </div>
 </template>
 

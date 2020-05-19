@@ -7,13 +7,7 @@
         </slot>
       </div>
       <slot name="menu">
-<router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/button">Button doc</router-link> |
-      <router-link to="/grid">Grid doc</router-link> |
-      <router-link to="/modal">Modal doc</router-link> |
-      <router-link to="/carousel">Carousel doc</router-link> |
-      <router-link to="/dataTable">DataTable doc</router-link> |
+      
       </slot>
     </nav>
   </div>
@@ -59,7 +53,7 @@ a {
   font-size: 1.2em;
   // border-radius: 20px;
   overflow: hidden;
-  border: 4px solid white;
+  border: 4px solid rgba(255, 255, 255, 1);
   display: inline-flex;
 }
 .nav-menu {

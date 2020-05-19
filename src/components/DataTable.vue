@@ -147,7 +147,7 @@ export default Vue.extend({
   font-size: 1.3em;
   display: inline-block;
   font-family: monospace;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(178, 190, 195, .7)
 }
 .table-header {
   font-weight: 600;
@@ -209,6 +209,7 @@ export default Vue.extend({
 
 .btn-add {
   margin-left: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .btn-remove {

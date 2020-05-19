@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main-container">
     <h1>Here is carousel examples</h1>
     <div class="container">
       <Carousel v-bind:images="carouselSlides" />
@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Carousel from '@/components/Carousel.vue';
-import { users, slides, columns, search } from '@/components/localStore.ts';
+import { users, slides, columns, search } from '../components/localStore';
 
 export default Vue.extend({
   name: 'ButtonView',
@@ -26,9 +26,11 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="less">
+@import "../styles/main.less";
+
 .container {
   display: flex;
-  border: 1px dotted black;
+  border-top: 1px dotted black;
   min-height: 100px;
   justify-content: space-around;
   align-items: center;

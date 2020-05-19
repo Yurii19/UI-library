@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="main-container">
     <h1>Here is grid examples</h1>
      <Row>
       <Column :size="5">this is column with size = 5</Column>
@@ -24,6 +24,7 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="less">
+@import "../styles/main.less";
 .container {
  margin: 0;
  border: 1px dotted black;

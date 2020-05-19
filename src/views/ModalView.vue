@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main-container">
     <h1>Here is modal examples</h1>
     <div class="container">
        <Modal :title="'Hello im my modal'">
@@ -29,9 +29,11 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="less">
+@import "../styles/main.less";
+
 .container {
   display: flex;
-  border: 1px dotted black;
+  border-top: 1px dotted black;
   height: 100px;
   justify-content: space-around;
   align-items: center;
