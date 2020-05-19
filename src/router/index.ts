@@ -18,6 +18,31 @@ const routes: RouteConfig[] = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
+  {
+    path: '/button',
+    name: 'Button',
+    component: () => import('../views/ButtonView.vue'),
+  },
+  {
+    path: '/grid',
+    name: 'Grid',
+    component: () => import('../views/GridView.vue'),
+  },
+  {
+    path: '/modal',
+    name: 'Modal',
+    component: () => import('../views/ModalView.vue'),
+  },
+  {
+    path: '/carousel',
+    name: 'Carousel',
+    component: () => import('../views/CarouselView.vue'),
+  },
+  {
+    path: '/dataTable',
+    name: 'DataTable',
+    component: () => import('../views/DataTableView.vue'),
+  },
 ];
 
 const router = new VueRouter({

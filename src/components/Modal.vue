@@ -4,14 +4,15 @@
       <div class="modal" v-if="visibility">
         <button
           class="cross-close modal-close button"
-          v-on:click="visibility=false"
           @click.prevent="closed">X</button>
         <h3 class="modal-header">{{title}}</h3>
         <div class="modal-body">
           <slot>Modal default content fdfghf fdhfhfgh fdgghfghfg ryrty rtyrtyrety ertyrtyrty ertyrtyrtyr retyrety</slot>
         </div>
         <div class="modal-footer">
-          <button class="button" v-on:click="visibility=false" @click.prevent="closed">click</button>
+          <div @click.prevent="closed">
+            <slot name="accept">-ok-</slot>
+          </div>
         </div>
       </div>
     </div>
@@ -28,12 +29,13 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'Modal',
   props: {
+    title: String,
     size: String,
     color: String,
   },
   data() {
     return {
-      title: 'Send',
+     // title: 'Send',
       visibility: false,
       pressedValue: '',
     };
@@ -44,6 +46,7 @@ export default Vue.extend({
       this.$emit('modalIsOpen');
     },
     closed() {
+      this.visibility = false;
       this.$emit('modalIsClosed');
     },
   },

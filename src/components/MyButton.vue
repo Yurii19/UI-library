@@ -1,8 +1,8 @@
 <template>
-    <button v-bind:class="color"
+    <button v-bind:class="[color, size]"
     @click="sendClick"
     >
-    Press
+   <slot>Press</slot>
     </button>
 </template>
 
@@ -40,20 +40,26 @@ export default Vue.extend({
 @dark: rgba(34, 32, 32, 1);
 @light: rgba(255, 249, 249, 1);
 
+.is-active {
+  // border-bottom: 1px solid black;
+  transition: .1s;
+  box-shadow:inset 0 0 5px 8px rgba(255, 253, 253, .6) ;
+}
+
 .bg-err {
+   .btn;
   background-color: @err;
   color: @light;
-  .btn;
   &:active {
-    box-shadow: 0 0 0px 4px rgba(250, 0, 0, 0.3) !important;
+    .is-active;
   }
 }
 .bg-suc {
+  .btn;
   background-color: @suc;
   color: @light;
-  .btn;
   &:active {
-    box-shadow: 0 0 0px 4px rgba(0, 252, 105, 0.4) !important;
+   .is-active;
   }
 }
 .bg-warn {
@@ -61,7 +67,7 @@ export default Vue.extend({
   color: @light;
   background-color: @warn;
   &:active {
-    box-shadow: 0 0 0px 4px rgba(252, 185, 0, 0.4) !important;
+   .is-active;
   }
 }
 .bg-info {
@@ -69,7 +75,7 @@ export default Vue.extend({
   color: @light;
   background-color: @inf;
   &:active {
-    box-shadow: 0 0 0px 4px rgba(86, 83, 245, 0.6) !important;
+    .is-active;
   }
 }
 .bg-dark {
@@ -77,7 +83,8 @@ export default Vue.extend({
   color: @light !important;
   background-color: @dark;
   &:active {
-    box-shadow: 0 0 0px 4px rgba(34, 32, 32, 0.5) !important;
+    .is-active;
+    
   }
 }
 
@@ -104,10 +111,13 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
+  background-color: rgba(149, 175, 192, 0.6);
+  box-shadow: 0 0 3px 0px #818181;
+  
 }
 .btn-tpl(@color) {
   &:active {
-    box-shadow: 0 0 0px 4px @color;
+    .is-active;
   }
 }
 </style>

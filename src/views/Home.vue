@@ -1,14 +1,18 @@
 <template>
-  <div class>
+  <div class="home">
+    
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <MyButton :color="'bg-err'" />
+    <MyButton :color="'bg-err'" ><template>close</template></MyButton>
+    <MyButton :color="'btn'" ><template>button by slot</template></MyButton>
+    <MyButton :color="'bg-dark'" ><template>x</template></MyButton>
     <Row>
       <Column :size="5">this is column with size = 5</Column>
       <Column :size="3">this is column with size = 3</Column>
       <Column :size="3">
-        <Modal>
+        <Modal :title="'Hello im my modal'">
           <template #default>here is modal text</template>
+           <template #accept><MyButton :color="'bg-suc'" :size="'btn-small'" ><template>OK</template></MyButton></template>
           <template #trigger>
             show modal ->
             <MyButton :color="'bg-info'" />
@@ -33,7 +37,7 @@ import Column from "@/components/grid/Column.vue";
 import Modal from "@/components/Modal.vue";
 import Carousel from "@/components/Carousel.vue";
 import DataTable from "@/components/DataTable.vue";
-import { users, slides, columns, search }  from "@/components/localStore.ts";
+import { users, slides, columns, search } from "@/components/localStore.ts";
 export default {
   name: "Home",
   components: {
@@ -55,3 +59,9 @@ export default {
   },
 };
 </script>
+<style lang="less" >
+body {
+  margin: 0;
+  // border: 1px solid red;
+}
+</style>

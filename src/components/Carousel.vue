@@ -5,12 +5,12 @@
     </div>
     <i
       class="my-control fas fa-arrow-circle-left"
-      v-show="currentSlide != 0"
+      v-if="currentSlide != 0"
       @click="currentSlide--"
     ></i>
     <i
       class="my-control fas fa-arrow-circle-right button-right"
-      v-show="currentSlide != images.length-1"
+      v-if="currentSlide != images.length-1"
       @click="currentSlide++;"
     ></i>
   </div>
