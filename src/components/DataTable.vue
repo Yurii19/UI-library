@@ -1,21 +1,20 @@
 <template>
-  <div class="table">
-    <h3>Table demo</h3>
-    <div class="user-table">
-      <div class="table-search">
-        <span class="table-name">
-          Users
-          <button class="btn btn-add" data-method="POST">добавить</button>
-        </span>
-        <input
-          v-model="searchRequest"
-          @input="usersArr"
-          class="input-search"
-          placeholder="search"
-          type="text"
-        />
-      </div>
-      <thead class="table-header tr">
+  <div class="user-table">
+    <div class="table-search">
+      <span class="table-name">
+        {{ tableName }}
+        <!-- <button class="btn btn-add" data-method="POST">добавить</button> -->
+      </span>
+      <input
+        v-model="searchRequest"
+        @input="usersArr"
+        class="input-search"
+        placeholder="search"
+        type="text"
+      />
+    </div>
+    <thead class="table-header">
+      <tr class="tr">
         <td v-for="col in columns" :key="col.title" v-bind:class="deckClass(col)">
           {{col.title}}
           <button v-if="col.sortable" class="b-sort" @click="clickHandle(col.value)">
@@ -30,15 +29,17 @@
             ></i>
           </button>
         </td>
-      </thead>
-      <tbody v-for="(user, index) in usersSet" :key="user.id" class="table-body tr">
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr v-for="(user, index) in usersSet" :key="user.id" class="tr">
         <td
           v-for="col in columns"
           :key="col.title"
           v-bind:class="deckClass(col)"
         >{{getDeckValue(user, col.value, index)}}</td>
-      </tbody>
-    </div>
+      </tr>
+    </tbody>
   </div>
 </template>
 
@@ -50,6 +51,7 @@ export default Vue.extend({
     items: Array, // array of users
     columns: Array, // config of columns
     search: Object,
+    tableName: String,
   },
   updated() {
     // alert("updated");
@@ -66,11 +68,11 @@ export default Vue.extend({
   methods: {
     usersArr() {
       const res: any = [];
-      for (const itemUser  of this.items) {
+      for (const itemUser of this.items) {
         const theUser: any = itemUser;
         for (const itemField of this.search.fields) {
           const specifiedFields = itemField;
-          for (const itemFilter of this.search.filters ) {
+          for (const itemFilter of this.search.filters) {
             const theFilter = itemFilter;
             if (
               theFilter(theUser[specifiedFields]).includes(
@@ -135,6 +137,11 @@ export default Vue.extend({
       }
     },
   },
+  computed: {
+    tdWidth() {
+      return 800 / this.columns.length;
+    },
+  },
 });
 </script>
 
@@ -144,13 +151,20 @@ export default Vue.extend({
   font-family: "Courier New", Courier, monospace;
 }
 .user-table {
+  width: 100%;
   font-size: 1.3em;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   font-family: monospace;
-  background-color: rgba(178, 190, 195, .7)
+  background-color: rgba(178, 190, 195, 0.7);
 }
 .table-header {
   font-weight: 600;
+}
+.table-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .table-search {
   padding: 10px;
@@ -169,53 +183,52 @@ export default Vue.extend({
   border-style: none;
   padding-left: 5px;
 }
-
 .tr {
   display: flex;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 0px 5px 0px;
   border-bottom: 1px solid rgba(0, 0, 255, 0.2);
+  width: 100%;
 }
-
+td:last-child {
+  width: 50%;
+  margin-right: 5px;
+}
 .td {
   text-align: left;
-  width: 110px;
+  width: 180px;
   padding: 0 7px 0 7px;
   word-wrap: break-word;
 }
-
+.table-body * {
+  font-size: 0.9em;
+}
 .align-right {
   .td;
   width: 100px;
   text-align: right;
 }
-
 .fas {
   cursor: pointer;
   user-select: none;
   display: flex;
 }
-
 .b-sort {
   margin-left: 7px;
   padding: 0;
   border-style: none;
 }
-
 .btn-edit {
   font-family: "consolas";
   margin-right: 4px;
   background-color: rgba(255, 255, 0, 0.5);
 }
-
 .btn-add {
   margin-left: 10px;
   background-color: rgba(255, 255, 255, 0.6);
 }
-
 .btn-remove {
   background-color: rgba(255, 0, 0, 0.3);
 }
-
 .btn {
   border-radius: 3px;
   border-style: none;
@@ -227,7 +240,6 @@ export default Vue.extend({
     box-shadow: inset 0 0 3px 1px rgba(129, 129, 129, 1);
   }
 }
-
 .users-order {
   .td;
   width: 40px;

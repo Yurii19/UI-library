@@ -1,6 +1,6 @@
 <template>
 <button v-bind:class="[color, size]"
-    @click="sendClick"
+    @click="sendClick(event)"
     >
    <slot>Press</slot>
     </button>
@@ -22,8 +22,8 @@ export default Vue.extend({
     };
   },
   methods: {
-    sendClick() {
-      this.$emit('buttonClicked', this.pressedValue );
+    sendClick(ev: Event) {
+      this.$emit('buttonClicked', ev );
     },
   },
 });
@@ -42,12 +42,11 @@ export default Vue.extend({
 @light: rgba(255, 249, 249, 1);
 
 .is-active {
-  // border-bottom: 1px solid black;
   transition: .1s;
   box-shadow:inset 0 0 5px 8px rgba(255, 253, 253, .6) ;
 }
 
-.bg-err {
+.bg-error {
    .btn;
   background-color: @err;
   color: @light;
@@ -55,7 +54,7 @@ export default Vue.extend({
     .is-active;
   }
 }
-.bg-suc {
+.bg-success {
   .btn;
   background-color: @suc;
   color: @light;
@@ -63,7 +62,7 @@ export default Vue.extend({
    .is-active;
   }
 }
-.bg-warn {
+.bg-warning {
   .btn;
   color: @light;
   background-color: @warn;
@@ -113,8 +112,11 @@ export default Vue.extend({
   align-items: center;
   font-family: sans-serif;
   background-color: rgba(149, 175, 192, 0.6);
-  box-shadow: 0 0 3px 0px #818181;
-  
+  box-shadow: 0 0 3px 0px #818181; 
+}
+
+.rounded {
+  border-radius: 50%;
 }
 .btn-tpl(@color) {
   &:active {

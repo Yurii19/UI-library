@@ -55,13 +55,14 @@ export default {
       usersSet: users,
       columnsConfig: columns,
       searchConfig: search,
-    }
+    };
   },
 };
 </script>
 <style lang="less" >
 body {
   margin: 0;
+  padding-top: 80px;
   // border: 1px solid red;
 }
 </style>

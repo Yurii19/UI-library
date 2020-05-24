@@ -30,8 +30,6 @@ export default Vue.extend({
   name: 'Modal',
   props: {
     title: String,
-    size: String,
-    color: String,
   },
   data() {
     return {

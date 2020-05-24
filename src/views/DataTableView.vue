@@ -1,9 +1,37 @@
 <template>
   <div class="main-container">
-    <h1>Here is data table examples</h1>
+    <h1>{{pageTitle}}</h1>
+     <section class="section">
+      <span>
+<p class="has-line-data" data-line-start="0" data-line-end="1">Element <code>&lt;DataTable /&gt;</code> is designed to display tabular data, supports sorting and filtering</p>
+      </span>
     <div class="container">
-      <DataTable :items="usersSet" :columns="columnsConfig" :search="searchConfig"/>
+      <DataTable :items="usersSet"
+       :columns="columnsConfig"
+       :search="searchConfig"
+       :tableName="'Users'"
+        />
     </div>
+
+    <div class="description">
+        <div class="code-sheet">
+          <pre><code>&lt;div class=&quot;table-container&quot;&gt;
+   &lt;DataTable :items=&quot;props&quot;
+   :columns=&quot;configProps&quot;
+   :search=&quot;{}&quot;
+   :tableName=&quot;'Props'&quot;
+    /&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          </div>
+     <div class="table-container">
+       <DataTable :items="props"
+       :columns="configProps"
+       :search="{}"
+       :tableName="'Props'"
+        />
+      </div>
+     </section>
   </div>
 </template>
 
@@ -22,6 +50,49 @@ export default Vue.extend({
       usersSet: users,
       columnsConfig: columns,
       searchConfig: search,
+      pageTitle: `<DataTable />`,
+       configProps: [
+       // { title: "№", value: "_index" },
+        { title: 'Prop', value: 'props' },
+        { title: 'Type', value: 'type' },
+         {title: 'Default', value: 'default'},
+        {title: 'Required', value: 'required'},
+        { title: 'Description', value: 'description' },
+      ],
+      props: [
+        {
+         // id: 0,
+          props: 'items',
+          type: 'Object[]',
+          default: 'none',
+          required: 'true',
+          description: 'Items is the table data in array format, where each record (row) data are keyed objects.',
+           },
+           {
+         // id: 0,
+          props: 'columns',
+          type: 'Object[]',
+          default: 'none',
+          required: 'true',
+          description: 'The columns prop is used to customize the table columns headings, and in which order the columns of data are displayed.',
+           },
+           {
+         // id: 0,
+          props: 'search',
+          type: 'Object',
+          default: 'none',
+          required: 'false',
+          description: 'Property is used to display objects from an array of items that meet certain criteria.',
+           },
+           {
+         // id: 0,
+          props: 'tableName',
+          type: 'String',
+          default: 'none',
+          required: 'false',
+          description: 'The property specifies the table header.',
+           },
+      ],
     };
   },
 });
@@ -32,7 +103,7 @@ export default Vue.extend({
 
 .container {
   display: flex;
-  border-top: 1px dotted black;
+  // border-top: 1px dotted black;
   min-height: 100px;
   justify-content: space-around;
   align-items: center;

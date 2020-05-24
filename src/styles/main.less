@@ -1,12 +1,40 @@
 
+.table-container {
+  text-align: left;
+}
+
+.section {
+  padding: 10px 10px 10px 10px;
+  padding-bottom: 20px;
+  margin-top: 40px;
+}
+
 .main-basis {
-  //  border-left: 1px dotted black;
-  //  border-right: 1px dotted black;
   display: flex;
   flex-direction: column;
   margin: auto;
   background-color: rgba(161, 181, 54, 0.36);
   padding-bottom: 20px;
+}
+
+.description {
+  text-align: left;
+}
+.section span {
+  text-align: left;
+  line-height: 1.2;
+  font-family: Verdana, Geneva, sans-serif;
+}
+span code{
+  font-size: 1.3em;
+  color: red;
+}
+
+.code-sheet {
+  text-align: left;
+  padding: 5px;
+  background-color: white;
+  margin-bottom: 25px;
 }
 .main-container {
   .main-basis;
@@ -18,17 +46,11 @@
     .main-basis;
     max-width: 600px;
   }
-  button {
-    color: green !important;
-  }
 }
 
 @media (max-width: 400px){
   .main-container {
     .main-basis;
     width: 100%;
-  }
-  button {
-    color: red !important;
   }
 }

@@ -19,7 +19,7 @@ export default Vue.extend({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .row {
-  border: 1px dotted red;
+  // border: 1px dotted red;
   display: grid;
   justify-content: left;
   grid-template-columns: repeat(12, 1fr);
