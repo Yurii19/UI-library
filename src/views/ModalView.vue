@@ -70,7 +70,6 @@ export default Vue.extend({
     return {
       pageTitle: `<Modal />`,
       configProps: [
-        // { title: "№", value: "_index" },
         { title: 'Prop', value: 'props' },
         { title: 'Type', value: 'type' },
          {title: 'Default', value: 'default'},
@@ -79,7 +78,6 @@ export default Vue.extend({
       ],
       props: [
         {
-         // id: 0,
           props: 'title',
           type: 'String',
           default: 'none',
@@ -97,7 +95,6 @@ export default Vue.extend({
 
 .container {
   display: flex;
-  // border-top: 1px dotted black;
   height: 100px;
   justify-content: space-around;
   align-items: center;

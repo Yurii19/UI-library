@@ -123,21 +123,18 @@ export default Vue.extend({
     return {
       pageTitle: `<MyButton />`,
       configEvents: [
-      //  { title: "№", value: "_index" },
         { title: 'Event', value: 'event' },
         { title: 'Argument', value: 'argument' },
         { title: 'Description', value: 'description' },
       ],
       events: [
         {
-         // id: 0,
           event: 'buttonClicked',
           argument: 'Native click event object',
           description: 'Emitted when non-disabled button clicked',
            },
       ],
       configProps: [
-       // { title: "№", value: "_index" },
         { title: 'Prop', value: 'props' },
         { title: 'Type', value: 'type' },
         {title: 'Default', value: 'default'},
@@ -146,7 +143,6 @@ export default Vue.extend({
       ],
       props: [
         {
-         // id: 0,
           props: 'clolor',
           type: 'String',
            default: 'none',
@@ -154,7 +150,6 @@ export default Vue.extend({
           description: 'Applies one of the color variants to the component',
            },
            {
-         // id: 1,
           props: 'size',
           type: 'String',
            default: '35px height',

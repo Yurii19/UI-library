@@ -69,6 +69,7 @@ export default Vue.extend({
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
 }
 
 .modal {

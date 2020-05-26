@@ -52,7 +52,6 @@ export default Vue.extend({
       searchConfig: search,
       pageTitle: `<DataTable />`,
        configProps: [
-       // { title: "№", value: "_index" },
         { title: 'Prop', value: 'props' },
         { title: 'Type', value: 'type' },
          {title: 'Default', value: 'default'},
@@ -61,7 +60,6 @@ export default Vue.extend({
       ],
       props: [
         {
-         // id: 0,
           props: 'items',
           type: 'Object[]',
           default: 'none',
@@ -69,7 +67,6 @@ export default Vue.extend({
           description: 'Items is the table data in array format, where each record (row) data are keyed objects.',
            },
            {
-         // id: 0,
           props: 'columns',
           type: 'Object[]',
           default: 'none',
@@ -77,7 +74,6 @@ export default Vue.extend({
           description: 'The columns prop is used to customize the table columns headings, and in which order the columns of data are displayed.',
            },
            {
-         // id: 0,
           props: 'search',
           type: 'Object',
           default: 'none',
@@ -85,7 +81,6 @@ export default Vue.extend({
           description: 'Property is used to display objects from an array of items that meet certain criteria.',
            },
            {
-         // id: 0,
           props: 'tableName',
           type: 'String',
           default: 'none',
@@ -103,7 +98,6 @@ export default Vue.extend({
 
 .container {
   display: flex;
-  // border-top: 1px dotted black;
   min-height: 100px;
   justify-content: space-around;
   align-items: center;

@@ -55,7 +55,6 @@ export default Vue.extend({
       carouselSlides: slides,
       pageTitle: `<Carousel />`,
       configProps: [
-        // { title: "№", value: "_index" },
         { title: 'Props', value: 'props' },
         { title: 'Type', value: 'type' },
         {title: 'Default', value: 'default'},
@@ -64,7 +63,6 @@ export default Vue.extend({
       ],
       props: [
         {
-         // id: 0,
           props: 'images',
           type: 'Array',
           default: 'none',
@@ -82,7 +80,6 @@ export default Vue.extend({
 
 .container {
   display: flex;
-  // border-top: 1px dotted black;
   min-height: 100px;
   justify-content: space-around;
   align-items: center;

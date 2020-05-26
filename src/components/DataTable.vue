@@ -156,7 +156,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   font-family: monospace;
-  background-color: rgba(178, 190, 195, 0.7);
+  background-color: rgba(206, 214, 224, .8);
 }
 .table-header {
   font-weight: 600;

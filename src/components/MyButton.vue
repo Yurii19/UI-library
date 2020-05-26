@@ -74,6 +74,7 @@ export default Vue.extend({
   .btn;
   color: @light;
   background-color: @inf;
+
   &:active {
     .is-active;
   }
@@ -102,7 +103,8 @@ export default Vue.extend({
   height: 35px;
   padding: 0 15px 0 15px;
   border-radius: 7px;
-  outline: none;
+  // outline: none;
+  // outline:  solid;
   font-weight: 600;
   font-size: 1em;
   cursor: pointer;
