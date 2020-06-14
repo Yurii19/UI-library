@@ -48,7 +48,6 @@
 import Vue from 'vue';
 import DataTable from '@/components/DataTable.vue';
 import { users, columns, search } from '../components/localStore';
-import RemoteColumnCongig from '../types/RemoteColumnConfig';
 
 
 export default Vue.extend({
@@ -101,7 +100,6 @@ export default Vue.extend({
           {
             title: 'Возраст',
             value(user: any) {
-              // let birthday = 'birthday';
               const birthYear = new Date(user.birthday).getFullYear();
               return new Date().getFullYear() - birthYear;
             },

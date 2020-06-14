@@ -217,7 +217,6 @@ export default Vue.extend({
           itemId: row['id' as keyof object],
         });
         this.$store.commit('refreshLocalIdes', { key: this.tableName });
-        alert('hello');
       }
     },
 
@@ -237,7 +236,6 @@ export default Vue.extend({
         } else {
           this.addLocalRow();
         }
-
         this.failedSend = false;
       }
     },

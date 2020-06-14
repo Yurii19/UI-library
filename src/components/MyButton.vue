@@ -1,6 +1,6 @@
 <template>
 <button v-bind:class="[color, size]"
-    @click="sendClick(event)"
+    @click="sendClick()"
     >
    <slot>Press</slot>
     </button>
@@ -22,12 +22,11 @@ export default Vue.extend({
     };
   },
   methods: {
-    sendClick(ev: Event) {
+    sendClick() {
       this.$emit('click');
     },
   },
 });
-// console.log(name);
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

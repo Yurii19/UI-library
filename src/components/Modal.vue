@@ -38,8 +38,6 @@ export default Vue.extend({
   name: 'Modal',
   props: {
     title: String,
-   // visibilytyFlag: Boolean,
-    // @click.prevent="closed"
   },
   data() {
     return {
@@ -69,15 +67,11 @@ export default Vue.extend({
 @modal-lines: #7f8fa6;
 
 .close-slot {
-  //display: flex;
- // border: 1px solid red;
   text-align: right;
 }
 
 .button-wrap {
-  // border: 1px solid red;
   display: inline-flex;
-  // padding: 0 !important;
 }
 input {
  border-style: none;
@@ -145,7 +139,6 @@ input {
   text-align: left;
   font-family: Verdana, Tahoma, sans-serif;
   color: rgba(0, 0, 0, 0.7);
-  // font-size: 0.9em;
   border-bottom: 1px solid @modal-lines;
   border-top: 1px solid @modal-lines;
   padding: 7px 0 7px 0;
