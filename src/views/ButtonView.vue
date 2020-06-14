@@ -1,8 +1,8 @@
 <template>
   <div class="main-container">
     <h1>{{pageTitle}}</h1>
-
     <section class="section">
+      
       <span>
         <h1 class="code-line" data-line-start="1" data-line-end="2">
           <a id="Cololors_1"></a>Cololors
@@ -92,7 +92,7 @@
       <div class="table-container">
        <DataTable :items="events"
        :columns="configEvents"
-       :search="{}"
+       :search="null"
        :tableName="'Events'"
         />
       </div>
@@ -100,7 +100,7 @@
       <div class="table-container">
        <DataTable :items="props"
        :columns="configProps"
-       :search="{}"
+       :search="null"
        :tableName="'Props'"
         />
       </div>
@@ -145,14 +145,14 @@ export default Vue.extend({
         {
           props: 'clolor',
           type: 'String',
-           default: 'none',
+          default: 'none',
           required: 'true',
           description: 'Applies one of the color variants to the component',
            },
            {
           props: 'size',
           type: 'String',
-           default: '35px height',
+          default: '35px height',
           required: 'false',
           description: 'Applies one of the size variants to the component',
            },

@@ -23,7 +23,7 @@ export default Vue.extend({
   },
   methods: {
     sendClick(ev: Event) {
-      this.$emit('buttonClicked', ev );
+      this.$emit('click');
     },
   },
 });
@@ -94,8 +94,9 @@ export default Vue.extend({
   font-size: 1.1em !important;
 }
 .btn-small {
-  height: 25px !important;
+  height: 20px !important;
   font-size: 0.8em !important;
+  margin: 1px;
 }
 .btn {
   .btn-tpl(rgba(104, 103, 103, 0.4));

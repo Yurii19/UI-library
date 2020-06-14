@@ -21,7 +21,7 @@
         <template #default>here is modal text</template>
         <template #accept>
           <MyButton :color="'bg-success'" :size="'btn-small'">
-            <template>OK</template>
+            <template>ok</template>
           </MyButton>
         </template>
         <template #trigger>
@@ -43,9 +43,10 @@
   &lt;/Modal&gt;</code></pre>
       </div>
       <div class="table-container">
-       <DataTable :items="props"
+       <DataTable 
+       :items="props"
        :columns="configProps"
-       :search="{}"
+       :search="null"
        :tableName="'Props'"
         />
       </div>

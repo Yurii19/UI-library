@@ -30,7 +30,7 @@
     <div class="table-container">
        <DataTable :items="props"
        :columns="configProps"
-       :search="{}"
+       :search="null"
        :tableName="'Props'"
         />
       </div>

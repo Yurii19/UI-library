@@ -37,7 +37,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed ;
-  
+
+  margin: 0;
+  padding-top: 80px;  
 }
 
 #app {

@@ -15,6 +15,10 @@
       </main>
 
       <div class="contacts">
+
+        <span>this is -> {{counterValue}}</span>
+        <button @click="incrCounter">++</button>
+        <br />
         <a href="https://github.com/Yurii19/UI-library" target="blank">
           <i class="fab fa-github"></i>GitHub
         </a>
@@ -23,20 +27,31 @@
           <i class="fas fa-user-cog"></i>Author
         </a>
       </div>
+      
     </div>
   </div>
 </template>
 
 <script>
+
+// import Store from 
+import Vuex from 'vuex';
 export default {
   name: "Home",
+ methods:{
+   incrCounter: function(){
+     this.$store.commit('increment');
+   }
+ }
+ ,
+  computed: {
+    counterValue() {
+      return this.$store.state.counter;
+    }
+  }
 };
 </script>
-<style lang="less" >
-body {
-  margin: 0;
-  padding-top: 80px;
-}
+<style scoped lang="less" >
 .contacts {
   text-align: left;
 }
@@ -45,7 +60,8 @@ body {
   font-size: 1.2em;
 }
 i {
-  margin: 5px;
+
+  margin: 5px 10px 5px 0px;
 }
 .main-container {
   height: 85vh;

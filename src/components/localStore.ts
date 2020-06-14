@@ -4,6 +4,7 @@ export const users = [
   { id: 30052, name: 'Сид', surname: 'Меер', age: 10 },
   { id: 30053, name: 'Себастиан', surname: 'Персон', age: 13 },
   { id: 30054, name: 'Ричард', surname: 'Гериот', age: 14 },
+  { id: 30055, name: 'Рич', surname: 'Кларк', age: 9 },
 ];
 
 export const slides = [
@@ -13,10 +14,11 @@ export const slides = [
 ];
 
 export const columns = [
-  { title: '№', value: '_index' },
-  { title: 'Имя', value: 'name' },
-  { title: 'Фамилия', value: 'surname',  sortable: true },
-  { title: 'Возраст', value: 'age', type: 'number', sortable: true },
+  { title: '№', editable: false, value: '_index', getValue() {return this.value; } },
+  { title: 'Имя', value: 'name', getValue() {return this.value; } },
+  { title: 'Фамилия', value: 'surname',  sortable: true, getValue() {return this.value; } },
+  { title: 'Возраст', value: 'age', type: 'number', sortable: true, getValue() {return this.value; } },
+  { title: 'Действия', value: 'actions', editable: false, getValue() { return this.value; } },
 ];
 
 export const search = {
