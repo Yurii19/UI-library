@@ -1,8 +1,8 @@
 <template>
   <div class="main-container">
     <h1>{{pageTitle}}</h1>
-
     <section class="section">
+      
       <span>
         <h1 class="code-line" data-line-start="1" data-line-end="2">
           <a id="Cololors_1"></a>Cololors
@@ -92,7 +92,7 @@
       <div class="table-container">
        <DataTable :items="events"
        :columns="configEvents"
-       :search="{}"
+       :search="null"
        :tableName="'Events'"
         />
       </div>
@@ -100,7 +100,7 @@
       <div class="table-container">
        <DataTable :items="props"
        :columns="configProps"
-       :search="{}"
+       :search="null"
        :tableName="'Props'"
         />
       </div>
@@ -123,21 +123,18 @@ export default Vue.extend({
     return {
       pageTitle: `<MyButton />`,
       configEvents: [
-      //  { title: "№", value: "_index" },
         { title: 'Event', value: 'event' },
         { title: 'Argument', value: 'argument' },
         { title: 'Description', value: 'description' },
       ],
       events: [
         {
-         // id: 0,
           event: 'buttonClicked',
           argument: 'Native click event object',
           description: 'Emitted when non-disabled button clicked',
            },
       ],
       configProps: [
-       // { title: "№", value: "_index" },
         { title: 'Prop', value: 'props' },
         { title: 'Type', value: 'type' },
         {title: 'Default', value: 'default'},
@@ -146,18 +143,16 @@ export default Vue.extend({
       ],
       props: [
         {
-         // id: 0,
           props: 'clolor',
           type: 'String',
-           default: 'none',
+          default: 'none',
           required: 'true',
           description: 'Applies one of the color variants to the component',
            },
            {
-         // id: 1,
           props: 'size',
           type: 'String',
-           default: '35px height',
+          default: '35px height',
           required: 'false',
           description: 'Applies one of the size variants to the component',
            },

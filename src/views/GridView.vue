@@ -30,7 +30,7 @@
     <div class="table-container">
        <DataTable :items="props"
        :columns="configProps"
-       :search="{}"
+       :search="null"
        :tableName="'Props'"
         />
       </div>
@@ -56,7 +56,6 @@ export default Vue.extend({
     return {
       pageTitle: ` <Row />, <Column />`,
       configProps: [
-        // { title: "№", value: "_index" },
         { title: 'Props', value: 'props' },
         { title: 'Type', value: 'type' },
         {title: 'Default', value: 'default'},
@@ -65,7 +64,6 @@ export default Vue.extend({
       ],
       props: [
         {
-         // id: 0,
           props: 'Size',
           type: 'Number',
           default: '1',
@@ -93,20 +91,10 @@ export default Vue.extend({
 .row {
 padding-top: 20px;
 padding-bottom: 20px;
-// border: 1px solid red;
 }
 
 .row span {
   display: block;
   border: 1px solid red;
 }
-// .container {
-//  margin: 0;
-//  border: 1px solid black;
-//   height: 100px;
-//   padding-top: 20px;
-//   padding-bottom: 30px;
-// //   justify-content: space-around;
-// //   align-items: center;
-// }
 </style>

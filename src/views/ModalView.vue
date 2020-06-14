@@ -21,7 +21,7 @@
         <template #default>here is modal text</template>
         <template #accept>
           <MyButton :color="'bg-success'" :size="'btn-small'">
-            <template>OK</template>
+            <template>ok</template>
           </MyButton>
         </template>
         <template #trigger>
@@ -43,9 +43,10 @@
   &lt;/Modal&gt;</code></pre>
       </div>
       <div class="table-container">
-       <DataTable :items="props"
+       <DataTable 
+       :items="props"
        :columns="configProps"
-       :search="{}"
+       :search="null"
        :tableName="'Props'"
         />
       </div>
@@ -70,7 +71,6 @@ export default Vue.extend({
     return {
       pageTitle: `<Modal />`,
       configProps: [
-        // { title: "№", value: "_index" },
         { title: 'Prop', value: 'props' },
         { title: 'Type', value: 'type' },
          {title: 'Default', value: 'default'},
@@ -79,7 +79,6 @@ export default Vue.extend({
       ],
       props: [
         {
-         // id: 0,
           props: 'title',
           type: 'String',
           default: 'none',
@@ -97,7 +96,6 @@ export default Vue.extend({
 
 .container {
   display: flex;
-  // border-top: 1px dotted black;
   height: 100px;
   justify-content: space-around;
   align-items: center;

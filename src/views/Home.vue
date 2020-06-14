@@ -1,68 +1,87 @@
 <template>
-  <div class="home">
-    <h1>Welcome to my project!</h1>
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <!-- <MyButton :color="'bg-err'" ><template>close</template></MyButton>
-    <MyButton :color="'btn'" ><template>button by slot</template></MyButton>
-    <MyButton :color="'bg-dark'" ><template>x</template></MyButton>
-    <Row>
-      <Column :size="5">this is column with size = 5</Column>
-      <Column :size="3">this is column with size = 3</Column>
-      <Column :size="3">
-        <Modal :title="'Hello im my modal'">
-          <template #default>here is modal text</template>
-           <template #accept><MyButton :color="'bg-suc'" :size="'btn-small'" ><template>OK</template></MyButton></template>
-          <template #trigger>
-            show modal ->
-            <MyButton :color="'bg-info'" />
-          </template>
-        </Modal>
-      </Column>
-    </Row>
-    <Carousel
-    v-bind:images="carouselSlides"
-    />
-    <DataTable :items="usersSet" :columns="columnsConfig" :search="searchConfig"/>
-    <MyModal> -->
+ <div class="main-container">
+    <div class="scene">
+      <main>
+        <h2>Simple vuejs ui library</h2>
+        <p class="has-line-data" data-line-start="0" data-line-end="1">
+          A simple vue js library containing the main components of the user interface -
+          <em>buttons</em>,
+          <em>grid</em>,
+          <em>slider</em>,
+          <em>modal window</em>,
+          <em>navbar</em> and
+          <em>data table</em> .
+        </p>
+      </main>
+
+      <div class="contacts">
+        <span>this is -> {{counterValue}}</span>
+        <button @click="incrCounter">++</button>
+        <br />
+        <a href="https://github.com/Yurii19/UI-library" target="blank">
+          <i class="fab fa-github"></i>GitHub
+        </a>
+        <br />
+        <a href="https://yurii19.github.io/" target="blank">
+          <i class="fas fa-user-cog"></i>Author
+        </a>
+      </div>
+      
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-import MyButton from "@/components/MyButton.vue";
-import Row from "@/components/grid/Row.vue";
-import Column from "@/components/grid/Column.vue";
-import Modal from "@/components/Modal.vue";
-import Carousel from "@/components/Carousel.vue";
-import DataTable from "@/components/DataTable.vue";
-import { users, slides, columns, search } from "@/components/localStore.ts";
+// import Store from 
+import Vuex from 'vuex';
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
-    MyButton,
-    Row,
-    Column,
-    Modal,
-    Carousel,
-    DataTable,
-  },
-  data: function() {
-    return {
-      carouselSlides: slides,
-      usersSet: users,
-      columnsConfig: columns,
-      searchConfig: search,
-    };
-  },
+ methods:{
+   incrCounter: function(){
+     this.$store.commit('increment');
+   }
+ }
+ ,
+  computed: {
+    counterValue() {
+      return this.$store.state.counter;
+    }
+  }
 };
 </script>
-<style lang="less" >
-body {
-  margin: 0;
-  padding-top: 80px;
-  // border: 1px solid red;
+<style scoped lang="less" >
+.contacts {
+  text-align: left;
+}
+.contacts * {
+  color: white;
+  font-size: 1.2em;
+}
+i {
+  margin: 5px 10px 5px 0px;
+}
+.main-container {
+  height: 85vh;
+  justify-content: center;
+  display: flex;
+}
+.scene {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  width: 70%;
+  background-color: #4a69bd;
+  opacity: 0.8;
+  margin: 0 auto;
+  animation-duration: 2s;
+  overflow: hidden;
+  color: white;
+}
+h2 {
+  color: white;
+}
+p {
+  text-align: left;
 }
 </style>

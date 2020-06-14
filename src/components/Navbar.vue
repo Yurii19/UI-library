@@ -9,7 +9,7 @@
         </div>
       </div>
 
-      <div v-bind:class="['nav-menu', {'hide': !isOpen}]">
+      <div v-bind:class="['nav-menu', {'hide': !isOpen}]" @click="closeMenu">
         <slot name="menu"></slot>
       </div>
     </nav>
@@ -30,8 +30,9 @@ export default Vue.extend({
   methods: {
     changeButton() {
       this.isOpen = !this.isOpen;
-      // document.getElementsByClassName('nav-menu').classLis;
-      // event.style = ;
+    },
+    closeMenu() {
+      this.isOpen = !this.isOpen;
     },
   },
   computed: {},
@@ -45,9 +46,9 @@ export default Vue.extend({
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 999;
 }
 .nav-menu {
-  // border: 1px solid red;
   display: flex;
   width: 100%;
   justify-content: space-around;

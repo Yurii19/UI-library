@@ -7,12 +7,11 @@
         </template>
         <template #menu class="menu-wrap">
           <router-link class="rl" to="/">Home</router-link>
-          <!-- <router-link to="/about">About</router-link>| -->
-          <router-link class="rl" to="/button">Button doc</router-link>
-          <router-link class="rl" to="/grid">Grid doc</router-link>
-          <router-link class="rl" to="/modal">Modal doc</router-link>
-          <router-link class="rl" to="/carousel">Carousel doc</router-link>
-          <router-link class="rl" to="/dataTable">DataTable doc</router-link>
+          <router-link class="rl" to="/button">Button</router-link>
+          <router-link class="rl" to="/grid">Grid</router-link>
+          <router-link class="rl" to="/modal">Modal</router-link>
+          <router-link class="rl" to="/carousel">Carousel</router-link>
+          <router-link class="rl" to="/dataTable">Data Table</router-link>
         </template>
       </Navbar>
     </div>
@@ -32,6 +31,16 @@ export default Vue.extend({
 </script>
 
 <style lang="less">
+
+body {
+  background-image: url('https://www.dropbox.com/s/mtx7xxxjsuyyzuq/mainbg.jpg?raw=1');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed ;
+  margin: 0;
+  padding-top: 80px;
+  
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -60,7 +69,6 @@ export default Vue.extend({
  .rl{
   font-weight: 100 !important;
   font-size: 0.8em;
-  border-bottom: 1px solid white;
  } 
 }
 </style>
