@@ -6,38 +6,32 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    counter: 0,
     tables: {},
-    users: {},
   },
   mutations: {
     initTable(state, data) {
       Vue.set(state.tables, data.tableName, data.initialState);
     },
 
-    increment(state) {
-      state.counter++;
-    },
-
-    updateRemoteUser(state, data) {
+    updateRemoteUser(state: any, data) {
       state.tables[data.key] = data.items.slice();
     },
 
-    addLocalTableRow(state, data) {
+    addLocalTableRow(state: any, data) {
       state.tables[data.key].push(data.row);
     },
 
-    updateLocalTableRow(state, data) {
+    updateLocalTableRow(state: any, data) {
       state.tables[data.key].splice(data.row.id, 1, data.row);
     },
 
-    refreshLocalIdes(state, config) {
-      state.tables[config.key].forEach((el, iterator) => {
+    refreshLocalIdes(state: any, config) {
+      state.tables[config.key].forEach((el: any, iterator: number) => {
         el.id = iterator;
       });
     },
 
-    removeLocalRow(state, config) {
+    removeLocalRow(state: any, config) {
       state.tables[config.key].splice(config.itemId, 1);
     },
   },
@@ -92,7 +86,6 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    getUsers: (state) => state.users,
     getTables: (state) => state.tables,
   },
 });

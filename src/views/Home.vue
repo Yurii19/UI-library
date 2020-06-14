@@ -1,5 +1,5 @@
 <template>
- <div class="main-container">
+  <div class="main-container">
     <div class="scene">
       <main>
         <h2>Simple vuejs ui library</h2>
@@ -15,9 +15,6 @@
       </main>
 
       <div class="contacts">
-
-        <span>this is -> {{counterValue}}</span>
-        <button @click="incrCounter">++</button>
         <br />
         <a href="https://github.com/Yurii19/UI-library" target="blank">
           <i class="fab fa-github"></i>GitHub
@@ -27,28 +24,15 @@
           <i class="fas fa-user-cog"></i>Author
         </a>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-
-// import Store from 
+// import Store from
 import Vuex from 'vuex';
 export default {
-  name: "Home",
- methods:{
-   incrCounter: function(){
-     this.$store.commit('increment');
-   }
- }
- ,
-  computed: {
-    counterValue() {
-      return this.$store.state.counter;
-    }
-  }
+  name: 'Home',
 };
 </script>
 <style scoped lang="less" >
@@ -60,7 +44,6 @@ export default {
   font-size: 1.2em;
 }
 i {
-
   margin: 5px 10px 5px 0px;
 }
 .main-container {
