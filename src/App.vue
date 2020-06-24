@@ -69,6 +69,7 @@ body {
  .rl{
   font-weight: 100 !important;
   font-size: 0.8em;
+  padding: 3px 3px 3px 0;
  } 
 }
 </style>

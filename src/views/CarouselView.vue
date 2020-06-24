@@ -45,7 +45,7 @@ import { users, slides, columns, search } from '../components/localStore';
 import DataTable from '@/components/DataTable.vue';
 
 export default Vue.extend({
-  name: 'ButtonView',
+  name: 'CarouselView',
   components: {
     Carousel,
     DataTable,

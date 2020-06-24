@@ -3,7 +3,12 @@
     <div class="table-search">
       <div class="title-wrap">
         <span class="table-name">{{ tableName }}</span>
-        <MyButton :color="'bg-success'" :size="'btn-small'" @click="showModal({})">
+        <MyButton
+          v-if="visibilityAddButton"
+          :color="'bg-success'"
+          :size="'btn-small'"
+          @click="showModal({})"
+        >
           <template>add</template>
         </MyButton>
       </div>
@@ -359,6 +364,11 @@ export default Vue.extend({
     },
   },
   computed: {
+    visibilityAddButton() {
+      const res = this.columns.find((el: any) => el.value === '_index');
+      return res;
+    },
+
     usersSet() {
       if (this.localItems) {
         return this.$data.localItems;
@@ -478,7 +488,7 @@ th:last-child {
   .td {
     display: inline-block;
     text-align: left;
-    width: 10%;
+    width: 20px;
     padding: 0 7px 0 7px;
     word-wrap: break-word;
   }
