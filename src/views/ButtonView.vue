@@ -100,7 +100,7 @@
        <DataTable :items="props"
        :columns="configProps"
        :search="null"
-       :tableName="'Props'"
+       :tableName="'MyButton Props'"
         />
       </div>
     </section>

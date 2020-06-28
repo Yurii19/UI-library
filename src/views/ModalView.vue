@@ -43,7 +43,7 @@
   &lt;/Modal&gt;</code></pre>
       </div>
       <div class="table-container">
-        <DataTable :items="props" :columns="configProps" :search="null" :tableName="'Props'" />
+        <DataTable :items="props" :columns="configProps" :search="null" :tableName="'Modal Props'" />
       </div>
     </section>
   </div>

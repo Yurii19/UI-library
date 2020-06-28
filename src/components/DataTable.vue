@@ -120,10 +120,10 @@ export default Vue.extend({
   },
   created() {
     if (!this.$store.state.tables[this.tableName]) {
-       this.$store.commit('initTable', {
-      tableName: this.tableName,
-      initialState: this.items,
-    });
+      this.$store.commit('initTable', {
+        tableName: this.tableName,
+        initialState: this.items,
+      });
     }
     if (this.apiUrl) {
       this.$store.dispatch('getUsers', {
@@ -169,7 +169,7 @@ export default Vue.extend({
       this.columns.forEach((el: any) => {
         const key = el.getValue();
         if (el.editable !== false) {
-            newRow[key] = this.answers[key as keyof object];
+          newRow[key] = this.answers[key as keyof object];
         } else {
           newRow[key] = '';
         }
@@ -287,31 +287,36 @@ export default Vue.extend({
     },
 
     usersArr() {
-      let res: any = [];
+
       if (this.searchRequest === '') {
-        res = this.items.slice();
-      }
-      for (const itemUser of this.items) {
-        const theUser: any = itemUser;
-        for (const itemField of this.search.fields) {
-          const specifiedFields = itemField;
-          for (const itemFilter of this.search.filters) {
-            const theFilter = itemFilter;
-            if (
-              theFilter(theUser[specifiedFields]).includes(
-                theFilter(this.searchRequest),
-              )
-            ) {
-              if (res.includes(theUser)) {
-                break;
-              } else {
-                res.push(theUser);
+        //  res = this.items.slice();
+        return this.$store.state.tables[this.tableName];
+      } else {
+        const res: any = [];
+        for (const itemUser of this.items) {
+          const theUser: any = itemUser;
+          for (const itemField of this.search.fields) {
+            const specifiedFields = itemField;
+            for (const itemFilter of this.search.filters) {
+              const theFilter = itemFilter;
+              if (
+                theFilter(theUser[specifiedFields]).includes(
+                  theFilter(this.searchRequest),
+                )
+              ) {
+                if (res.includes(theUser)) {
+                  break;
+                } else {
+                  res.push(theUser);
+                }
               }
             }
           }
         }
+        return res;
       }
-      this.localItems = res.slice();
+
+     // this.usersSet = res.slice();
     },
 
     clickHandle(sortedField: string) {
@@ -382,7 +387,10 @@ export default Vue.extend({
     },
 
     usersSet() {
-      return this.$store.state.tables[this.tableName];
+     // let res = [];
+      const result: [] = this.usersArr().slice();
+      // return this.$store.state.tables[this.tableName];
+      return result;
     },
 
     tdWidth() {

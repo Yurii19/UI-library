@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="table-container">
-        <DataTable :items="props" :columns="configProps" :search="null" :tableName="'Props'" />
+        <DataTable :items="props" :columns="configProps" :search="null" :tableName="'DataTable Props'" />
       </div>
     </section>
   </div>

@@ -31,7 +31,7 @@
        <DataTable :items="props"
        :columns="configProps"
        :search="null"
-       :tableName="'Props'"
+       :tableName="'Grid Props'"
         />
       </div>
     </section>
