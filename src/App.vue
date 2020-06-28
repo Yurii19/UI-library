@@ -4,6 +4,7 @@
       <Navbar>
         <template #brand>
           <img src="https://www.dropbox.com/s/mc8fvdgpbrcdlaq/mo.png?raw=1" height="60px" />
+          
         </template>
         <template #menu class="menu-wrap">
           <router-link class="rl" to="/">Home</router-link>
@@ -16,6 +17,20 @@
       </Navbar>
     </div>
     <router-view />
+    <footer class="footer">
+      <!-- <div class="contacts"> -->
+        <router-link class="rl" to="/">
+        <img src="@/assets/uilogo.png" height="40px" alt="site logo">
+        </router-link>
+        <a href="https://github.com/Yurii19/UI-library/tree/vue-js" target="blank">
+          <i class="fab fa-github icon-link"></i>GitHub
+        </a>
+        <a href="https://yurii19.github.io/" target="blank">
+          <i class="fas fa-user-cog icon-link"></i>Author
+        </a>
+      <!-- </div> -->
+
+    </footer>
   </div>
 </template>
 
@@ -37,9 +52,39 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed ;
-
   margin: 0;
-  padding-top: 80px;  
+  // padding-top: 80px;  
+  min-height: 100vh;
+  // border: 1px solid red;
+  //  display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+}
+.rl {
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  // flex: 0 1 auto;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #4a69bd;
+  opacity: .8;
+  padding: 0px 10px 0px 10px;
+    margin-bottom: auto 0;
+  flex-wrap: wrap;
+  // width: 100%;
+}
+.contacts {
+  // border: 1px solid blue;
+}
+.footer * {
+  color: white;
+}
+.icon-link {
+  margin-right: 4px;
 }
 
 #app {
@@ -48,6 +93,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  // margin-top: 10%;
+  //   display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // align-items: center;
+  // min-height: 100vh;
+  // width: 100%;
+  // border: 1px solid red;
 }
 
 #nav {
@@ -61,7 +114,7 @@ body {
     }
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #55efc4;
     }
   }
 }
@@ -70,6 +123,7 @@ body {
   font-weight: 100 !important;
   font-size: 0.8em;
   padding: 3px 3px 3px 0;
+
  } 
 }
 </style>

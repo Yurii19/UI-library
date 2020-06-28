@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { loadUsersData } from '../service/dataTableAPI';
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 
@@ -25,8 +26,8 @@ export default new Vuex.Store({
       state.tables[data.key].splice(data.row.id, 1, data.row);
     },
 
-    refreshLocalIdes(state: any, config) {
-      state.tables[config.key].forEach((el: any, iterator: number) => {
+    refreshLocalIdes(state: any, data) {
+      state.tables[data.key].forEach((el: any, iterator: number) => {
         el.id = iterator;
       });
     },
@@ -83,9 +84,8 @@ export default new Vuex.Store({
       });
     },
   },
-  modules: {
-  },
   getters: {
     getTables: (state) => state.tables,
   },
+  plugins: [createPersistedState()],
 });

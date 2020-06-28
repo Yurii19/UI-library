@@ -28,7 +28,7 @@
 
       <div class="description">
         <div class="code-sheet">
-          <pre><code>&lt;div class=&quot;table-container&quot;&gt;
+          <pre><code>&lt;div&gt;
    &lt;DataTable :items=&quot;props&quot;
    :columns=&quot;configProps&quot;
    :search=&quot;{}&quot;
@@ -56,10 +56,7 @@ export default Vue.extend({
   components: {
     DataTable,
   },
-  mounted() {
-   // alert(this.$store.state.tables);
-   // console.log(this.$store.state.tables);
-  },
+
   data() {
     return {
       usersSet: users,
@@ -174,18 +171,12 @@ export default Vue.extend({
     };
   },
   methods: {
-    // loadUsers: function() {
-    //   this.$store.dispatch('getUsers');
-    // }
   },
 
   computed: {
     usersArray() {
-      // alert('work');
      const tableName = this.remoteTableName as keyof object;
      return this.$store.state.tables[tableName];
-    // console.log(' - ' + svar);
-     // return svar;
     },
   },
 });

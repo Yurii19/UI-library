@@ -103,8 +103,6 @@ export default Vue.extend({
   height: 35px;
   padding: 0 15px 0 15px;
   border-radius: 7px;
-  // outline: none;
-  // outline:  solid;
   font-weight: 600;
   font-size: 1em;
   cursor: pointer;

@@ -16,13 +16,13 @@
       <div class="code-sheet">
         <pre><code>&lt;Row class=&quot;row&quot;&gt;
   &lt;Column :size=&quot;5&quot;&gt;
-  &lt;div class=&quot;inner-wrap&quot;&gt;this is column with size = 5, equals 5/12 parts of row size&lt;/div&gt;
+  &lt;div&gt;this is column with size = 5, equals 5/12 parts of row size&lt;/div&gt;
   &lt;/Column&gt;
   &lt;Column :size=&quot;3&quot;&gt;
-  &lt;div class=&quot;inner-wrap&quot;&gt;this is column with size = 3&lt;/div&gt;
+  &lt;div&gt;this is column with size = 3&lt;/div&gt;
   &lt;/Column&gt;
   &lt;Column :size=&quot;2&quot;&gt;
-  &lt;div class=&quot;inner-wrap&quot;&gt;this is column with size = 2&lt;/div&gt;
+  &lt;div&gt;this is column with size = 2&lt;/div&gt;
   &lt;/Column&gt;
 &lt;/Row&gt;</code></pre>
     </div>

@@ -2,10 +2,9 @@
   <div class="main-container">
     <h1>{{pageTitle}}</h1>
     <section class="section">
-      
       <span>
         <h1 class="code-line" data-line-start="1" data-line-end="2">
-          <a id="Cololors_1"></a>Cololors
+          <a id="Cololors_1"></a>Colors
         </h1>
         <p class="has-line-data" data-line-start="2" data-line-end="3">
           There are available six types of button colors, which sets by passing property
@@ -43,7 +42,7 @@
       <br />
       <div class="description">
         <div class="code-sheet">
-          <pre><code>&lt;div class=&quot;container&quot;&gt;
+          <pre><code>&lt;div&gt;
   &lt;MyButton :color=&quot;'bg-error'&quot;&gt;&lt;template&gt;error&lt;/template&gt;&lt;/MyButton&gt;
   &lt;MyButton :color=&quot;'bg-success'&quot; &gt;&lt;template&gt;success&lt;/template&gt;&lt;/MyButton&gt;
   &lt;MyButton :color=&quot;'bg-warning'&quot; &gt;&lt;template&gt;warning&lt;/template&gt;&lt;/MyButton&gt;
@@ -82,7 +81,7 @@
       </div>
       <div class="description">
         <div class="code-sheet">
-          <pre><code>&lt;div class=&quot;container&quot;&gt;
+          <pre><code>&lt;div&gt;
   &lt;MyButton :color=&quot;'bg-error'&quot; :size=&quot;'btn-small'&quot;&gt;&lt;template&gt;close&lt;/template&gt;&lt;/MyButton&gt;
   &lt;MyButton :color=&quot;'bg-error'&quot;&gt;&lt;template&gt;close&lt;/template&gt;&lt;/MyButton&gt;
   &lt;MyButton :color=&quot;'bg-error'&quot; :size=&quot;'btn-big'&quot;&gt;&lt;template&gt;close&lt;/template&gt;&lt;/MyButton&gt;
@@ -167,7 +166,7 @@ export default Vue.extend({
 
 .container {
   display: flex;
-  height: 100px;
+  min-height: 100px;
   justify-content: space-around;
   align-items: center;
 }

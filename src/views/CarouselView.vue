@@ -16,7 +16,7 @@
       </div>
       <div class="description">
         <div class="code-sheet">
-          <pre><code>&lt;div class=&quot;container&quot;&gt;
+          <pre><code>&lt;div&gt;
     &lt;Carousel
       v-bind:images=&quot;[
         'https://loremflickr.com/320/240',

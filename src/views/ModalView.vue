@@ -17,17 +17,17 @@
         </p>
       </span>
       <div class="container">
-      <Modal :title="'Hello im my modal'">
-        <template #default>here is modal text</template>
-        <template #accept>
-          <MyButton :color="'bg-success'" :size="'btn-small'">
-            <template>ok</template>
-          </MyButton>
-        </template>
-        <template #trigger>
-          <MyButton :color="'bg-info'" />
-        </template>
-      </Modal>
+        <Modal :title="'Hello in my modal'">
+          <template #default>here is modal text</template>
+          <template #accept>
+            <MyButton :color="'bg-success'" :size="'btn-small'">
+              <template>ok</template>
+            </MyButton>
+          </template>
+          <template #trigger>
+            <MyButton :color="'bg-info'" />
+          </template>
+        </Modal>
       </div>
       <div class="code-sheet">
         <pre><code>&lt;Modal :title=&quot;'Hello im my modal'&quot;&gt;
@@ -43,12 +43,7 @@
   &lt;/Modal&gt;</code></pre>
       </div>
       <div class="table-container">
-       <DataTable 
-       :items="props"
-       :columns="configProps"
-       :search="null"
-       :tableName="'Props'"
-        />
+        <DataTable :items="props" :columns="configProps" :search="null" :tableName="'Props'" />
       </div>
     </section>
   </div>
@@ -73,8 +68,8 @@ export default Vue.extend({
       configProps: [
         { title: 'Prop', value: 'props' },
         { title: 'Type', value: 'type' },
-         {title: 'Default', value: 'default'},
-        {title: 'Required', value: 'required'},
+        { title: 'Default', value: 'default' },
+        { title: 'Required', value: 'required' },
         { title: 'Description', value: 'description' },
       ],
       props: [
@@ -84,7 +79,7 @@ export default Vue.extend({
           default: 'none',
           required: 'true',
           description: 'Applies a string, that sets the window title text.',
-           },
+        },
       ],
     };
   },

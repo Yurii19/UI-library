@@ -43,7 +43,12 @@
 
     <thead class="table-header">
       <tr class="tr">
-        <th v-for="col in columns" :key="col.title" v-bind:class="deckClass(col)">
+        <th
+          v-for="col in columns"
+          :key="col.title"
+          v-bind:class="[deckClass(col)]"
+          v-bind:style="{width: tdWidth}"
+        >
           {{col.title}}
           <button v-if="col.sortable" class="b-sort" @click="clickHandle(col.value)">
             <i v-if="sortClickCounter===0 || currentSortedField != col.value" class="fas fa-sort"></i>
@@ -61,7 +66,12 @@
     </thead>
     <tbody class="table-body">
       <tr v-for="(user, index) in usersSet" :key="user.id" class="tr">
-        <td v-for="col in columns" :key="col.title" v-bind:class="deckClass(col)">
+        <td
+          v-for="col in columns"
+          :key="col.title"
+          v-bind:class="deckClass(col)"
+          v-bind:style="{width: tdWidth}"
+        >
           {{getDeckValue(user, col, index)}}
           <div class="controls" v-if="col.value === 'actions'">
             <MyButton :color="'bg-error'" :size="'btn-small'" @click="removeTableRow(user)">
@@ -81,7 +91,6 @@
 import Vue from 'vue';
 import MyButton from '@/components/MyButton.vue';
 import Modal from '@/components/Modal.vue';
-// import LocalUser from '../types/localUser';
 export default Vue.extend({
   components: {
     MyButton,
@@ -110,18 +119,21 @@ export default Vue.extend({
     };
   },
   created() {
-    this.$store.commit('initTable', {
+    if (!this.$store.state.tables[this.tableName]) {
+       this.$store.commit('initTable', {
       tableName: this.tableName,
       initialState: this.items,
     });
+    }
     if (this.apiUrl) {
       this.$store.dispatch('getUsers', {
         url: this.apiUrl,
         key: this.tableName,
       });
-    } else {
-      this.$store.commit('refreshLocalIdes', { key: this.tableName });
     }
+    //  else {
+    //   this.$store.commit("refreshLocalIdes", { key: this.tableName });
+    // }
   },
 
   methods: {
@@ -143,7 +155,7 @@ export default Vue.extend({
           key: this.tableName,
           row: newRow,
         });
-        this.$store.commit('refreshLocalIdes', this.tableName);
+        this.$store.commit('refreshLocalIdes', { key: this.tableName });
       } else {
         this.$store.commit('updateLocalTableRow', {
           key: this.tableName,
@@ -153,16 +165,11 @@ export default Vue.extend({
     },
 
     makeNewLocalRow() {
-      const newRow: any = Object.assign({}, this.currentRow);
+      const newRow: any = Object.assign({}, this.currentRow); // attantion
       this.columns.forEach((el: any) => {
         const key = el.getValue();
         if (el.editable !== false) {
-          if (key === 'age') {
-            const stringDateBorn = this.answers['age' as keyof object];
-            newRow[key] = this.calculateAge(stringDateBorn);
-          } else {
             newRow[key] = this.answers[key as keyof object];
-          }
         } else {
           newRow[key] = '';
         }
@@ -172,7 +179,6 @@ export default Vue.extend({
         const l = this.$store.state.tables[this.tableName].length;
         newRow.id = l;
       }
-
       return newRow;
     },
 
@@ -210,18 +216,20 @@ export default Vue.extend({
       const confirmRemove = confirm(
         `Do you really want remove ${row['name' as keyof object]}`,
       );
-      if (confirmRemove && this.apiUrl) {
-        this.$store.dispatch('removeUser', {
-          itemId: row['id' as keyof object],
-          url: this.apiUrl,
-          key: this.tableName,
-        });
-      } else {
-        this.$store.commit('removeLocalRow', {
-          key: this.tableName,
-          itemId: row['id' as keyof object],
-        });
-        this.$store.commit('refreshLocalIdes', { key: this.tableName });
+      if (confirmRemove) {
+        if (this.apiUrl) {
+          this.$store.dispatch('removeUser', {
+            itemId: row['id' as keyof object],
+            url: this.apiUrl,
+            key: this.tableName,
+          });
+        } else {
+          this.$store.commit('removeLocalRow', {
+            key: this.tableName,
+            itemId: row['id' as keyof object],
+          });
+          this.$store.commit('refreshLocalIdes', { key: this.tableName });
+        }
       }
     },
 
@@ -305,6 +313,7 @@ export default Vue.extend({
       }
       this.localItems = res.slice();
     },
+
     clickHandle(sortedField: string) {
       if (this.currentSortedField !== sortedField) {
         this.currentSortedField = sortedField;
@@ -316,25 +325,28 @@ export default Vue.extend({
       }
       this.sortData(sortedField);
     },
+
     sortData(sortedField: any) {
+      const localTable = this.$store.state.tables[this.tableName];
       switch (this.sortClickCounter) {
         case 1:
-          this.items.sort((a: any, b: any) => {
+          localTable.sort((a: any, b: any) => {
             return a[sortedField] > b[sortedField] ? 1 : -1;
           });
           break;
         case 2:
-          this.items.sort((a: any, b: any) => {
+          localTable.sort((a: any, b: any) => {
             return a[sortedField] < b[sortedField] ? 1 : -1;
           });
           break;
         case 0:
-          this.items.sort((a: any, b: any) => {
+          localTable.sort((a: any, b: any) => {
             return a.id > b.id ? 1 : -1;
           });
           break;
       }
     },
+
     getDeckValue(anObject: object, col: any, id: number) {
       const x: string = col.title;
       switch (x) {
@@ -370,15 +382,12 @@ export default Vue.extend({
     },
 
     usersSet() {
-      if (this.localItems) {
-        return this.$data.localItems;
-      } else {
-        return this.items;
-      }
+      return this.$store.state.tables[this.tableName];
     },
 
     tdWidth() {
-      return 800 / this.columns.length;
+      const fraction = 100 / this.columns.length;
+      return fraction + '%';
     },
 
     editableFields() {
@@ -406,6 +415,7 @@ export default Vue.extend({
 .controls {
   display: flex;
   padding: 2px;
+  flex-wrap: wrap;
 }
 .page-header {
   font-family: "Courier New", Courier, monospace;
@@ -414,7 +424,7 @@ export default Vue.extend({
   width: 100%;
   display: flex;
   flex-direction: column;
-  font-family: monospace;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   background-color: rgba(206, 214, 224, 0.8);
 }
 .table-header {
@@ -453,14 +463,14 @@ export default Vue.extend({
 }
 td:last-child,
 th:last-child {
-  width: 50%;
+  width: 30%;
   margin-right: 5px;
 }
 .td {
   text-align: left;
-  width: 180px;
   padding: 0 7px 0 7px;
   word-wrap: break-word;
+  flex-wrap: wrap;
 }
 
 .align-right {
@@ -481,16 +491,12 @@ th:last-child {
 
 .users-order {
   .td;
-  width: 40px;
+  width: 40px !important;
 }
 
 @media (max-width: 600px) {
   .td {
-    display: inline-block;
     text-align: left;
-    width: 20px;
-    padding: 0 7px 0 7px;
-    word-wrap: break-word;
   }
 
   .align-right {
@@ -502,6 +508,7 @@ th:last-child {
     font-size: 0.8em;
     display: flex;
     flex-direction: column;
+    font-family: monospace;
   }
 
   .users-order {

@@ -13,7 +13,7 @@
 .main-basis {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 0 auto;
   background-color: rgba(248, 239, 186, 0.5);
   padding-bottom: 20px;
 }
@@ -41,6 +41,9 @@ span code {
 .main-container {
   .main-basis;
   max-width: 900px;
+   margin-top: 15%;
+  margin-bottom: 5%;
+  // border: 2px solid red;
 }
 
 .container {
@@ -50,7 +53,7 @@ span code {
 
 @media (max-width: 600px){
   .main-container {
-    .main-basis;
+    // .main-basis;
     max-width: 600px;
   }
 }
@@ -58,6 +61,6 @@ span code {
 @media (max-width: 400px){
   .main-container {
     .main-basis;
-    width: 100%;
+    max-width: 100%;
   }
 }
