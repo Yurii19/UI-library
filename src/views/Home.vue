@@ -12,7 +12,7 @@
           <em>navbar</em> and
           <em>data table</em> .
         </p>
-        <img  height="400px"   src="../assets/uilogo.png" alt="site logo" 
+        <img  height="300px"   src="../assets/uilogo.png" alt="site logo" 
         style="border-radius:8px; opacity: 0.8">
       </main>
     </section>
